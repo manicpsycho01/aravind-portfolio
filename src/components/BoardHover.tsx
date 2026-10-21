@@ -23,47 +23,46 @@ export function BoardHover({ covers, children }: { covers: Shot[]; children: Rea
         const y = gsap.quickTo(box, "y", { duration: 0.7, ease: "power3.out" });
         const rot = gsap.quickTo(box, "rotate", { duration: 0.9, ease: "power3.out" });
         gsap.set(box, { xPercent: -50, yPercent: -50, scale: 0.6, autoAlpha: 0 });
-        let lastX = 0;
-        let lastY = 0;
-        let shown = false;
+        let lastX = -1;
+        let lastY = -1;
+        let active = -1;
 
+        const show = (row: number) => {
+          if (row === active) return;
+          active = row;
+          frames.forEach((f, i) => gsap.to(f, { autoAlpha: i === row ? 1 : 0, duration: 0.25 }));
+          gsap.to(box, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "expo.out", overwrite: true });
+        };
+        const hide = () => {
+          if (active === -1) return;
+          active = -1;
+          gsap.to(box, { autoAlpha: 0, scale: 0.6, duration: 0.3, ease: "power3.in", overwrite: true });
+        };
+        // Only a real pointer movement shows the preview. Browsers fire synthetic hover/move events when content
+        // scrolls under a still cursor (same coordinates) — those must never bring it back.
         const move = (e: PointerEvent) => {
-          x(e.clientX);
-          y(e.clientY);
+          if (e.clientX === lastX && e.clientY === lastY) return;
           rot(gsap.utils.clamp(-8, 8, (e.clientX - lastX) * 0.6));
           lastX = e.clientX;
           lastY = e.clientY;
-        };
-        const enter = (e: PointerEvent) => {
+          x(e.clientX);
+          y(e.clientY);
           const row = (e.target as Element).closest<HTMLElement>("[data-row]");
-          if (!row) return;
-          const active = Number(row.dataset.row);
-          frames.forEach((f, i) => gsap.to(f, { autoAlpha: i === active ? 1 : 0, duration: 0.25 }));
-          gsap.to(box, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "expo.out" });
-          shown = true;
-        };
-        const leave = () => {
-          if (!shown) return;
-          shown = false;
-          gsap.to(box, { autoAlpha: 0, scale: 0.6, duration: 0.35, ease: "power3.in" });
+          if (row) show(Number(row.dataset.row));
+          else hide();
         };
 
         const el = root.current!;
-        // Scrolling moves the board out from under a still pointer without any pointer event: hide the preview then.
-        const scrolled = () => {
-          if (!shown) return;
-          const under = document.elementFromPoint(lastX, lastY);
-          if (!under || !el.contains(under) || !under.closest("[data-row]")) leave();
-        };
+        const io = new IntersectionObserver(([entry]) => { if (!entry?.isIntersecting) hide(); });
+        io.observe(el);
         el.addEventListener("pointermove", move);
-        el.addEventListener("pointerover", enter);
-        el.addEventListener("pointerleave", leave);
-        window.addEventListener("scroll", scrolled, { passive: true });
+        el.addEventListener("pointerleave", hide);
+        window.addEventListener("scroll", hide, { passive: true });
         return () => {
-          window.removeEventListener("scroll", scrolled);
+          io.disconnect();
           el.removeEventListener("pointermove", move);
-          el.removeEventListener("pointerover", enter);
-          el.removeEventListener("pointerleave", leave);
+          el.removeEventListener("pointerleave", hide);
+          window.removeEventListener("scroll", hide);
         };
       });
     },
