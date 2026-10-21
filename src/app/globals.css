@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #efede7;
+  --color-ink: #0d0d0c;
+  --color-graphite: #1a1a18;
+  --color-muted: rgb(13 13 12 / 0.62);
+  --color-line: rgb(13 13 12 / 0.12);
+  --color-paper-muted: rgb(239 237 231 / 0.62);
+  --color-paper-line: rgb(239 237 231 / 0.14);
+  --color-signal: #ff4f00;
+
+  --font-display: var(--font-sofia), "Arial Narrow", sans-serif;
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Desktop with a precise pointer; `fx` additionally requires motion to be allowed. */
+@custom-variant desk {
+  @media (hover: hover) and (pointer: fine) and (min-width: 1024px) {
+    @slot;
+  }
+}
+@custom-variant fx {
+  @media (hover: hover) and (pointer: fine) and (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+    @slot;
+  }
+}
+
+@utility label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  @media (min-width: 768px) {
+    font-size: 12px;
+  }
+}
+
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.84;
+  letter-spacing: -0.005em;
+}
+
+@utility gutter {
+  padding-inline: max(1rem, env(safe-area-inset-left));
+  @media (min-width: 768px) {
+    padding-inline: 2rem;
+  }
+  @media (min-width: 1280px) {
+    padding-inline: 2.5rem;
+  }
+}
+
+@utility link-u {
+  background: linear-gradient(currentColor, currentColor) no-repeat 100% 100% / 0 1px;
+  transition: background-size 0.45s var(--ease-out-expo);
+  &:hover,
+  &:focus-visible {
+    background-position: 0 100%;
+    background-size: 100% 1px;
+  }
+}
+
+@layer base {
+  html {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background: var(--color-paper);
+    font-family: var(--font-sans);
+    overflow-x: clip;
+  }
+  ::selection {
+    background: var(--color-signal);
+    color: var(--color-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 3px;
+  }
+  .on-signal :focus-visible {
+    outline-color: var(--color-ink);
+  }
+}
+
+/* Subtle static film grain over the whole page. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* First-visit preloader: only shown when the inline head script flags it. */
+.preloader {
+  display: none;
+}
+html[data-preload] .preloader {
+  display: flex;
+}
+
+/* Custom cursor hides the native one only while it is active. */
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(255 79 0 / 0.55); }
+  50% { box-shadow: 0 0 0 6px rgb(255 79 0 / 0); }
+}
+@keyframes blink {
+  0%, 60% { opacity: 1; }
+  61%, 100% { opacity: 0.35; }
+}
+@keyframes cue {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pulse-dot { animation: pulse-dot 1.8s ease-out infinite; }
+  .blink { animation: blink 1.2s steps(1) infinite; }
+  .cue-line { animation: cue 2s var(--ease-out-expo) infinite; }
+}
+
+/* Split-flap cell: hairline across the middle like a Solari board. */
+.flap-cell {
+  perspective: 300px;
+}
+.flap-cell::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 50%;
+  height: 1px;
+  background: rgb(0 0 0 / 0.55);
+}
+
+/* Boarding-pass perforation notches (mobile cards). */
+.perf::before,
+.perf::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: var(--color-ink);
+  translate: 0 -50%;
+}
+.perf::before { left: -9px; }
+.perf::after { right: -9px; }
+
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--outline, var(--color-ink));
+}
