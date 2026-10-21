@@ -16,7 +16,7 @@ export const person = {
   github: "https://github.com/manicpsycho01",
   available: "Open to collaborations",
   intro:
-    "I build products end to end — from the problem and the rules, to the interface people touch. Since 2023: a trade-credit network for the Gulf, an airline crew-ops advisor, and an AI kitchen app.",
+    "I build products end to end — from the problem and the rules, to the interface people touch. Fintech platforms, AI decision tools and mobile apps, designed to be trusted and built to ship.",
   manifesto:
     "Software should earn trust. Let the deterministic parts compute, let the AI explain, and design every screen so a real person can make a real decision with it.",
 };

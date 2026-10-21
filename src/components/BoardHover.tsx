@@ -24,12 +24,15 @@ export function BoardHover({ covers, children }: { covers: Shot[]; children: Rea
         const rot = gsap.quickTo(box, "rotate", { duration: 0.9, ease: "power3.out" });
         gsap.set(box, { xPercent: -50, yPercent: -50, scale: 0.6, autoAlpha: 0 });
         let lastX = 0;
+        let lastY = 0;
+        let shown = false;
 
         const move = (e: PointerEvent) => {
           x(e.clientX);
           y(e.clientY);
           rot(gsap.utils.clamp(-8, 8, (e.clientX - lastX) * 0.6));
           lastX = e.clientX;
+          lastY = e.clientY;
         };
         const enter = (e: PointerEvent) => {
           const row = (e.target as Element).closest<HTMLElement>("[data-row]");
@@ -37,14 +40,27 @@ export function BoardHover({ covers, children }: { covers: Shot[]; children: Rea
           const active = Number(row.dataset.row);
           frames.forEach((f, i) => gsap.to(f, { autoAlpha: i === active ? 1 : 0, duration: 0.25 }));
           gsap.to(box, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "expo.out" });
+          shown = true;
         };
-        const leave = () => gsap.to(box, { autoAlpha: 0, scale: 0.6, duration: 0.35, ease: "power3.in" });
+        const leave = () => {
+          if (!shown) return;
+          shown = false;
+          gsap.to(box, { autoAlpha: 0, scale: 0.6, duration: 0.35, ease: "power3.in" });
+        };
 
         const el = root.current!;
+        // Scrolling moves the board out from under a still pointer without any pointer event: hide the preview then.
+        const scrolled = () => {
+          if (!shown) return;
+          const under = document.elementFromPoint(lastX, lastY);
+          if (!under || !el.contains(under) || !under.closest("[data-row]")) leave();
+        };
         el.addEventListener("pointermove", move);
         el.addEventListener("pointerover", enter);
         el.addEventListener("pointerleave", leave);
+        window.addEventListener("scroll", scrolled, { passive: true });
         return () => {
+          window.removeEventListener("scroll", scrolled);
           el.removeEventListener("pointermove", move);
           el.removeEventListener("pointerover", enter);
           el.removeEventListener("pointerleave", leave);
