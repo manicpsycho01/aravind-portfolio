@@ -149,22 +149,22 @@ export const projects: Project[] = [
     problem:
       "People throw away food they forgot they had, and 'what can I cook with this?' is a daily question nobody has time to answer.",
     approach: [
-      "Make adding groceries effortless — camera and image picker feed OpenAI vision.",
+      "Make adding groceries effortless — snap or pick a photo of the fridge and let AI detect the items.",
       "Prioritise ingredients close to expiry when generating recipes.",
-      "Keep the AI on the server: Supabase Edge Functions call OpenAI, secured by row-level security.",
+      "Keep the AI on the server: a Supabase Edge Function calls Google Gemini, so no AI key ever ships in the app.",
     ],
     built: [
       "Smart pantry: add, edit and remove items, organised by category with quantities and expiry dates.",
       "AI recipe generator using what's already in the fridge.",
       "Ingredient search and filters, a pantry dashboard, and a friendly mascot-led onboarding.",
-      "Auth with email, Google and Apple sign-in; built for iOS and Android with Expo.",
+      "Email sign-in with Supabase Auth; built for iOS and Android from one Expo codebase.",
     ],
     results: [
       { value: "iOS + Android", label: "one Expo codebase" },
-      { value: "Vision + Chat", label: "OpenAI models via Edge Functions" },
+      { value: "Gemini", label: "fridge-photo item detection via an Edge Function" },
       { value: "RLS", label: "per-user data isolation in Supabase" },
     ],
-    stack: ["React Native", "Expo", "TypeScript", "Expo Router", "Reanimated", "NativeWind", "Supabase", "OpenAI", "TanStack Query"],
+    stack: ["React Native", "Expo", "TypeScript", "Expo Router", "Supabase", "Edge Functions", "Google Gemini", "Expo Image Picker"],
     links: [{ label: "GitHub", href: "https://github.com/manicpsycho01/FridgeMate" }],
     cover: { src: "/work/fridgemate/hero-mascot.png", alt: "FridgeMate AI mascot", w: 2000, h: 2000, device: "none" },
     gallery: [
@@ -181,5 +181,5 @@ export const capabilities = [
 ];
 
 export const stackMarquee = [
-  "Next.js", "React", "TypeScript", "React Native", "Expo", "PostgreSQL", "Supabase", "Python", "OpenAI", "Drizzle", "Tailwind", "GSAP", "Playwright", "Vercel",
+  "Next.js", "React", "TypeScript", "React Native", "Expo", "PostgreSQL", "Supabase", "Python", "Gemini", "Drizzle", "Tailwind", "GSAP", "Playwright", "Vercel",
 ];
