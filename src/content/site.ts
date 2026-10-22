@@ -149,7 +149,7 @@ export const projects: Project[] = [
     problem:
       "People throw away food they forgot they had, and 'what can I cook with this?' is a daily question nobody has time to answer.",
     approach: [
-      "Make stocking effortless: snap the fridge and Gemini lists what's inside — then confirm in one tap.",
+      "Make stocking effortless: snap the fridge — or the grocery receipt — and Gemini lists the food, then confirm in one tap.",
       "Know what to use first without typing expiry dates: freshness is estimated from typical shelf life and the day each item was added.",
       "Recipes that feel instant: offline ideas appear immediately and Gemini's ideas, built around what's expiring, replace them as soon as they're ready.",
       "Keep AI and secrets on the server: Supabase Edge Functions call Gemini, and row-level security keeps every fridge private.",
@@ -161,7 +161,7 @@ export const projects: Project[] = [
       "App Store-ready basics: email sign-in with password reset, in-app account deletion, haptics, reduced-motion support and a real app icon.",
     ],
     results: [
-      { value: "Gemini", label: "powers both fridge-photo scanning and recipe ideas" },
+      { value: "Gemini", label: "powers fridge and receipt scanning, and recipe ideas" },
       { value: "~1s", label: "to stock the fridge or log a cooked meal (batched writes)" },
       { value: "iOS", label: "running on iPhone via Expo, one codebase for Android" },
     ],
