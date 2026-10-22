@@ -192,3 +192,19 @@ test.describe("case-study gallery and shortcuts", () => {
     await page.waitForURL(/\/#work$/);
   });
 });
+
+test("floating contact: hidden on the hero, shown while scrolling, steps aside at the contact band", async ({ page }) => {
+  await page.goto("/", { waitUntil: "networkidle" });
+  const pill = page.locator("a[data-cursor=TALK]");
+  await expect(pill).toHaveAttribute("aria-hidden", "true");
+  await page.evaluate(() => window.scrollTo(0, window.innerHeight * 1.5));
+  await expect(pill).toHaveAttribute("aria-hidden", "false");
+  await expect(pill).toHaveAttribute("href", "/#contact");
+  await page.locator("#contact").scrollIntoViewIfNeeded();
+  await expect(pill).toHaveAttribute("aria-hidden", "true");
+});
+
+test("home: the numbers section is gone", async ({ page }) => {
+  await page.goto("/", { waitUntil: "networkidle" });
+  await expect(page.getByText(/\(0\d\) Numbers/i)).toHaveCount(0);
+});

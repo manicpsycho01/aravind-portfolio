@@ -4,6 +4,7 @@ import "lenis/dist/lenis.css";
 import "./globals.css";
 import { person } from "@/content/site";
 import { Cursor } from "@/components/Cursor";
+import { FloatingContact } from "@/components/FloatingContact";
 import { PageTransition } from "@/components/PageTransition";
 import { Preloader } from "@/components/Preloader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
         <SiteFooter />
+        <FloatingContact />
         <PageTransition />
         <Cursor />
       </body>

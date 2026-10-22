@@ -23,7 +23,7 @@ export function CaseKeys({ prev, next }: { prev: string; next: string }) {
   }, [router, prev, next]);
 
   return (
-    <p aria-hidden className="label pointer-events-none fixed right-6 bottom-6 z-40 hidden rounded-full bg-ink/85 px-3 py-2 text-paper/80 backdrop-blur-sm desk:block">
+    <p aria-hidden className="label pointer-events-none fixed bottom-6 left-6 z-40 hidden rounded-full bg-ink/85 px-3 py-2 text-paper/80 backdrop-blur-sm desk:block">
       ← → flights · Esc board
     </p>
   );

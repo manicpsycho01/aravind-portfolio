@@ -38,7 +38,6 @@ The portfolio is an airport departures board. Projects are "flights", the hero a
    - **Gates, pinned horizontal scroll (desktop only):**
      - One large panel per project (`cover` shot in a browser or phone frame), with the project number in giant outline type, kicker, summary and stack chips. Use ScrollTrigger pin with `containerAnimation` for parallax inside the panels.
      - On mobile, show vertical cards instead.
-   - **Numbers:** count-up stats taken from the projects' `results`. Pick 4, mono labels.
    - **Capabilities and stack:** two opposite-direction marquees (`capabilities`, `stackMarquee`) whose speed reacts to scroll velocity (ScrollVelocity-style).
    - **Contact:** a full-width **signal orange** band with a giant `LET'S BUILD →` line, a magnetic email button (copy-to-clipboard plus mailto) and a GitHub link. The footer repeats the live time and `© 2026`.
 2. **`/work/[slug]` case study** (generate static params from `projects`)

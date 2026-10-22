@@ -8,7 +8,6 @@ import { HeroName } from "@/components/HeroName";
 import { Manifesto } from "@/components/Manifesto";
 import { Reveals } from "@/components/Reveals";
 import { SplitFlap } from "@/components/SplitFlap";
-import { Stats } from "@/components/Stats";
 
 export default function Home() {
   return (
@@ -58,7 +57,6 @@ export default function Home() {
 
       <DeparturesBoard />
       <Gates />
-      <Stats />
       <Capabilities />
       <ContactBand />
       <Reveals />

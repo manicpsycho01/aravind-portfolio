@@ -6,7 +6,7 @@ export function Capabilities() {
   return (
     <section aria-labelledby="capabilities-title" className="pb-24 md:pb-36">
       <div className="gutter">
-        <SectionHead index="05" label="Capabilities & stack" title="On board" id="capabilities-title" />
+        <SectionHead index="04" label="Capabilities & stack" title="On board" id="capabilities-title" />
       </div>
       <div className="mt-14 flex flex-col border-y border-line md:mt-20">
         <Marquee

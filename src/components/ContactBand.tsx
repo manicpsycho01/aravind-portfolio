@@ -6,7 +6,7 @@ export function ContactBand() {
   return (
     <section id="contact" aria-labelledby="contact-title" className="on-signal gutter scroll-mt-0 bg-signal pt-6 pb-10 text-ink md:pb-14">
       <p className="label flex justify-between border-t border-ink/25 pt-4">
-        <span>(06) Contact</span>
+        <span>(05) Contact</span>
         <span>{person.available}</span>
       </p>
 
