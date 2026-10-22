@@ -37,7 +37,7 @@ export function DeparturesBoard() {
                   </span>
                 </span>
 
-                <span className="display mt-8 block text-[clamp(3rem,15vw,4.5rem)] transition-transform duration-500 ease-out-expo md:mt-0 md:text-[clamp(3rem,5.4vw,6rem)] md:group-hover:translate-x-5">
+                <span className="display mt-8 block text-[clamp(3rem,15vw,4.5rem)] transition-transform duration-500 ease-out-expo md:mt-0 md:text-[clamp(2.75rem,4.6vw,5rem)] md:group-hover:translate-x-5">
                   {p.title}
                   <span className="block font-sans text-sm font-normal tracking-normal normal-case text-paper-muted md:hidden">{p.kicker}</span>
                 </span>

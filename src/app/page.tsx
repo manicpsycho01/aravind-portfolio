@@ -28,7 +28,7 @@ export default function Home() {
         </div>
 
         <div className="relative mt-4 pt-8 md:mt-auto [container-type:inline-size]">
-          <HeroName lines={[person.first, person.last]} className="display text-[calc(100cqw/4.02)] leading-[0.8] whitespace-nowrap" />
+          <HeroName lines={[person.first, person.last]} className="display text-[calc(100cqw/4.02)] leading-[0.8] whitespace-nowrap md:text-[min(calc(100cqw/4.02),max(4.5rem,calc((100svh-370px)/1.65)))]" />
         </div>
 
         <div className="label relative mt-5 flex items-center justify-between border-t border-line pt-3 text-muted">

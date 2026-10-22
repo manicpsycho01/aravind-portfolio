@@ -14,6 +14,7 @@ export const person = {
   timezone: "Asia/Kolkata",
   email: "aravindadharsh@gmail.com",
   github: "https://github.com/manicpsycho01",
+  linkedin: "https://www.linkedin.com/in/aravind-srinivasan07",
   available: "Open to collaborations",
   intro:
     "I build products end to end — from the problem and the rules, to the interface people touch. Fintech platforms, AI decision tools and mobile apps, designed to be trusted and built to ship.",

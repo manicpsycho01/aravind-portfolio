@@ -48,7 +48,7 @@ export function NextFlight({ project }: { project: Project }) {
         <span>Next flight · Flt {project.no}</span>
         <span className="max-w-xl">{project.kicker}</span>
       </span>
-      <span className="display mt-8 block text-[clamp(3.5rem,14vw,10rem)] transition-transform duration-700 ease-out-expo group-hover:translate-x-4">
+      <span className="display mt-8 block text-[clamp(3rem,12vw,8.5rem)] transition-transform duration-700 ease-out-expo group-hover:translate-x-4">
         {project.title}&nbsp;<span aria-hidden>→</span>
       </span>
       <span

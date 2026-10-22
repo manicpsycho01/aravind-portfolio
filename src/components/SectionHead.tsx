@@ -6,7 +6,7 @@ export function SectionHead({ index, label, title, id, tone = "ink" }: { index: 
         <span>({index})</span>
         <span>{label}</span>
       </p>
-      <h2 id={id} data-reveal className="display text-[clamp(3.5rem,13vw,13.5rem)]">
+      <h2 id={id} data-reveal className="display text-[clamp(3rem,11vw,11.5rem)]">
         {title}
       </h2>
     </div>

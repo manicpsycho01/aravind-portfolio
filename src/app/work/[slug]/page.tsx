@@ -56,7 +56,7 @@ export default async function CaseStudy({ params }: Props) {
           </Link>
           <span className="pt-3.5">Flt {p.no} / [ {p.year} ]</span>
         </p>
-        <h1 data-reveal className="display mt-8 text-[clamp(4rem,15vw,17rem)] break-words md:mt-12">
+        <h1 data-reveal className="display mt-8 text-[clamp(3.5rem,12.5vw,14.5rem)] break-words md:mt-12">
           {p.title}
         </h1>
         <p data-reveal data-delay="0.1" className="mt-6 max-w-3xl text-xl leading-snug md:mt-10 md:text-3xl md:tracking-[-0.02em]">

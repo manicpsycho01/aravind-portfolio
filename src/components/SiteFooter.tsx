@@ -8,9 +8,14 @@ export function SiteFooter() {
       <span>
         {person.location} · <LocalTime zone={person.timezone} />
       </span>
-      <a href={person.github} target="_blank" rel="noreferrer" className="link-u inline-flex min-h-11 items-center justify-self-start text-paper md:justify-self-center">
-        GitHub ↗
-      </a>
+      <span className="flex gap-6 justify-self-start md:justify-self-center">
+        <a href={person.github} target="_blank" rel="noreferrer" className="link-u inline-flex min-h-11 items-center text-paper">
+          GitHub ↗
+        </a>
+        <a href={person.linkedin} target="_blank" rel="noreferrer" className="link-u inline-flex min-h-11 items-center text-paper">
+          LinkedIn ↗
+        </a>
+      </span>
       <a href="#main" className="link-u inline-flex min-h-11 items-center justify-self-start text-paper md:justify-self-end">
         Back to top ↑
       </a>

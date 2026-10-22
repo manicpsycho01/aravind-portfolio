@@ -10,7 +10,7 @@ export function ContactBand() {
         <span>{person.available}</span>
       </p>
 
-      <h2 id="contact-title" data-reveal className="display mt-16 text-[19.5vw] leading-[0.8] whitespace-nowrap md:mt-24">
+      <h2 id="contact-title" data-reveal className="display mt-16 text-[16.5vw] leading-[0.8] whitespace-nowrap md:mt-24">
         Let&rsquo;s build <span aria-hidden>→</span>
       </h2>
 
@@ -29,6 +29,9 @@ export function ContactBand() {
             </a>
             <a href={person.github} target="_blank" rel="noreferrer" className="link-u inline-flex min-h-11 items-center">
               GitHub ↗
+            </a>
+            <a href={person.linkedin} target="_blank" rel="noreferrer" className="link-u inline-flex min-h-11 items-center">
+              LinkedIn ↗
             </a>
           </div>
         </div>

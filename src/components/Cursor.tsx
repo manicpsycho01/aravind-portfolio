@@ -76,7 +76,7 @@ export function Cursor() {
         <div
           ref={ring}
           className={`absolute top-0 left-0 rounded-full border-[1.5px] border-white transition-[width,height,opacity] duration-300 ease-out-expo ${
-            active ? "h-10 w-10 opacity-0" : hovering ? "h-14 w-14" : "h-10 w-10"
+            active ? "h-8 w-8 opacity-0" : hovering ? "h-11 w-11" : "h-8 w-8"
           }`}
         />
         <div ref={dot} className={`absolute top-0 left-0 h-1.5 w-1.5 rounded-full bg-white ${active ? "opacity-0" : ""}`} />
@@ -84,7 +84,7 @@ export function Cursor() {
       <div
         ref={disc}
         className={`absolute top-0 left-0 flex items-center justify-center rounded-full bg-signal transition-[width,height,opacity] duration-300 ease-out-expo ${
-          active ? "h-22 w-22 opacity-100" : "h-10 w-10 opacity-0"
+          active ? "h-18 w-18 opacity-100" : "h-8 w-8 opacity-0"
         }`}
       >
         {active && <span className="label font-medium text-ink">{label}</span>}

@@ -241,3 +241,19 @@ test("phones: wide screenshots show a readable crop and pan full-height in the l
   await dialog.getByRole("button", { name: "Close" }).click();
   await expect(dialog).toHaveCount(0);
 });
+
+test("hero: the whole name fits on screen at short laptop heights", async ({ page, isMobile }) => {
+  test.skip(isMobile, "desktop sizes");
+  for (const [w, h] of [[1400, 660], [1280, 600], [1536, 730], [1920, 1080]] as const) {
+    await page.setViewportSize({ width: w, height: h });
+    await page.goto("/", { waitUntil: "networkidle" });
+    const box = await page.locator("h1 [data-line]").last().boundingBox();
+    expect(box!.y + box!.height, `${w}x${h}`).toBeLessThanOrEqual(h);
+    expect(box!.x + box!.width, `${w}x${h}`).toBeLessThanOrEqual(w);
+  }
+});
+
+test("LinkedIn is linked in the contact band and footer", async ({ page }) => {
+  await page.goto("/", { waitUntil: "networkidle" });
+  await expect(page.locator('a[href="https://www.linkedin.com/in/aravind-srinivasan07"]')).toHaveCount(2);
+});

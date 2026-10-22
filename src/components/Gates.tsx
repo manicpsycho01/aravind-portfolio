@@ -15,7 +15,7 @@ export function Gates() {
               <span>(03)</span>
               <span>Gates</span>
             </p>
-            <h2 id="gates-title" className="display text-[clamp(3.5rem,13vw,13.5rem)] fx:text-[min(10vw,19vh)]">
+            <h2 id="gates-title" className="display text-[clamp(3rem,11vw,11.5rem)] fx:text-[min(8.5vw,16vh)]">
               Now at
               <br />
               the gate
