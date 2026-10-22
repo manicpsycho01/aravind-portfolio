@@ -176,7 +176,7 @@ export const projects: Project[] = [
     ],
     stack: ["React Native", "Expo SDK 57", "TypeScript", "Expo Router", "Reanimated", "Supabase", "Edge Functions", "Google Gemini"],
     links: [{ label: "GitHub", href: "https://github.com/manicpsycho01/fridgemate-ai" }],
-    cover: { src: "/work/fridgemate/home.jpg", alt: "FridgeMate AI home: 6 items, 1 to use soon, Use first card for chicken", w: 780, h: 1688, device: "phone" },
+    cover: { src: "/work/fridgemate/home.jpg", alt: "FridgeMate AI home: 6 items, 1 to use soon", w: 780, h: 1688, device: "phone" },
     gallery: [
       { src: "/work/fridgemate/welcome.jpg", alt: "Welcome screen: Cook what you already have", w: 780, h: 1688, device: "phone" },
       { src: "/work/fridgemate/scan.jpg", alt: "Scan your fridge viewfinder with Freo's tip", w: 780, h: 1688, device: "phone" },
