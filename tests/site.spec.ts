@@ -101,41 +101,14 @@ test("reduced motion: the name and work are visible without animation", async ({
   await ctx.close();
 });
 
-test.describe("departures board hover preview (desktop)", () => {
-  test.skip(({ isMobile }) => isMobile, "hover preview is desktop-only");
-
-  const previewOpacity = (page: Page) =>
-    page.evaluate(() => {
-      const box = [...document.querySelectorAll<HTMLElement>("[aria-hidden]")].find((e) => e.querySelector("[data-frame]"));
-      return box ? Number(getComputedStyle(box).opacity) : -1;
-    });
-
-  test("shows on hover, hides on scroll down AND up, and stays hidden until the mouse really moves", async ({ page }) => {
-    await page.goto("/", { waitUntil: "networkidle" });
-    const row = page.locator("[data-row]").last();
-    await row.scrollIntoViewIfNeeded();
-    await page.waitForTimeout(600);
-    const box = (await row.boundingBox())!;
-    const cx = box.x + box.width / 2, cy = box.y + box.height / 2;
-    await page.mouse.move(cx - 40, cy, { steps: 4 });
-    await page.mouse.move(cx, cy, { steps: 4 });
-    await expect.poll(() => previewOpacity(page)).toBeGreaterThan(0.9);
-
-    await page.mouse.wheel(0, 900);
-    await expect.poll(() => previewOpacity(page)).toBe(0);
-
-    // Scroll back up so the rows pass under the still cursor (browsers fire synthetic hover events here).
-    await page.mouse.wheel(0, -900);
-    await page.waitForTimeout(1200);
-    await page.mouse.move(cx, cy); // same coordinates = synthetic, must not re-show
-    await page.waitForTimeout(500);
-    expect(await previewOpacity(page)).toBe(0);
-
-    // A real movement over a row brings it back.
-    const again = (await page.locator("[data-row]").first().boundingBox())!;
-    await page.mouse.move(again.x + again.width / 2 + 30, again.y + again.height / 2, { steps: 5 });
-    await expect.poll(() => previewOpacity(page)).toBeGreaterThan(0.9);
-  });
+test("departures board: rows link to case studies and no floating preview exists", async ({ page, isMobile }) => {
+  await page.goto("/", { waitUntil: "networkidle" });
+  expect(await page.locator("[data-frame]").count()).toBe(0);
+  test.skip(isMobile, "desktop row layout");
+  const row = page.locator("[data-row]").first();
+  await row.scrollIntoViewIfNeeded();
+  await row.click();
+  await expect(page).toHaveURL(new RegExp(`/work/${projects[0]!.slug}$`));
 });
 
 test.describe("nav anchor links", () => {

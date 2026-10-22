@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { projects } from "@/content/site";
-import { BoardHover } from "./BoardHover";
 import { SectionHead } from "./SectionHead";
 import { StatusChip } from "./StatusChip";
 
@@ -20,7 +19,6 @@ export function DeparturesBoard() {
         <span>Status</span>
       </div>
 
-      <BoardHover covers={projects.map((p) => p.cover)}>
         <ol className="mt-10 flex flex-col gap-4 md:mt-0 md:gap-0">
           {projects.map((p, i) => (
             <li key={p.slug}>
@@ -66,7 +64,6 @@ export function DeparturesBoard() {
             </li>
           ))}
         </ol>
-      </BoardHover>
     </section>
   );
 }
