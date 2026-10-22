@@ -137,3 +137,20 @@ test.describe("departures board hover preview (desktop)", () => {
     await expect.poll(() => previewOpacity(page)).toBeGreaterThan(0.9);
   });
 });
+
+test.describe("nav anchor links", () => {
+  test.skip(({ isMobile }) => isMobile, "header nav links are desktop-only");
+
+  test("(01) Work always scrolls to the work section (regression: intermittently stayed at the top)", async ({ page }) => {
+    for (let run = 0; run < 5; run++) {
+      await page.goto("/", { waitUntil: "networkidle" });
+      await page.waitForTimeout(400);
+      await page.locator("header").getByRole("link", { name: /work/i }).first().click();
+      await expect
+        .poll(async () => page.evaluate(() => Math.round(document.getElementById("work")!.getBoundingClientRect().top)), { timeout: 5000 })
+        .toBeLessThan(160);
+      expect(await page.evaluate(() => window.scrollY)).toBeGreaterThan(300);
+      await expect(page).toHaveURL(/#work$/);
+    }
+  });
+});

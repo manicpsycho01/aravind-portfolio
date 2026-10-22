@@ -27,7 +27,7 @@ export function Stats() {
               <span>{project.title}</span>
             </dt>
             <dd className="flex flex-col gap-3">
-              <CountUp value={result.value} className="display text-[clamp(4.5rem,22vw,9rem)] leading-[0.8] sm:text-[11vw] lg:text-[7.4vw]" />
+              <CountUp value={result.value} className="display text-[clamp(4.5rem,22vw,9rem)] leading-[0.8] sm:text-[11vw] lg:text-[6.6vw]" />
               <span className="max-w-[16rem] text-sm leading-snug text-muted">{result.label}</span>
             </dd>
           </div>

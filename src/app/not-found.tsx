@@ -12,7 +12,7 @@ export default function NotFound() {
         Flight not found — return to gate
       </h1>
       <SplitFlap words={["Flight not found"]} className="w-full max-w-5xl" />
-      <Link href="/" data-cursor="OPEN" className="display self-start text-[clamp(3rem,10vw,9rem)] transition-transform hover:translate-x-3">
+      <Link href="/" data-cursor="OPEN" className="display self-start py-1 text-[clamp(3rem,10vw,9rem)] transition-transform hover:translate-x-3">
         Return to gate <span className="text-signal">→</span>
       </Link>
     </section>

@@ -6,7 +6,7 @@ export function SiteHeader() {
   return (
     <header className="gutter absolute inset-x-0 top-0 z-30 flex items-start justify-between gap-4 pt-[max(1.25rem,env(safe-area-inset-top))]">
       <div className="label flex items-start gap-3 md:gap-6">
-        <Link href="/" aria-label={`${person.name}, home`} className="display -mt-1 text-[2.1rem] leading-none tracking-normal">
+        <Link href="/" aria-label={`${person.name}, home`} className="display relative -mt-1 text-[2.1rem] leading-none tracking-normal after:absolute after:-inset-1.5 after:content-['']">
           AS<span className="text-signal">.</span>
         </Link>
         <p className="flex flex-col text-muted">

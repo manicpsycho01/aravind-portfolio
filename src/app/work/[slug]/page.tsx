@@ -52,8 +52,8 @@ function NextFlight({ project }: { project: Project }) {
       data-cursor="VIEW"
       className="group gutter relative block overflow-hidden border-t border-line py-16 md:py-24"
     >
-      <span className="label flex justify-between text-muted">
-        <span>Next flight · Flt {project.no}</span>
+      <span className="label flex flex-col gap-1 text-muted sm:flex-row sm:justify-between sm:gap-6">
+        <span className="shrink-0">Next flight · Flt {project.no}</span>
         <span>{project.kicker}</span>
       </span>
       <span className="display mt-8 block text-[clamp(3.5rem,14vw,10rem)] transition-transform duration-700 ease-out-expo group-hover:translate-x-4 md:max-w-[62vw]">
