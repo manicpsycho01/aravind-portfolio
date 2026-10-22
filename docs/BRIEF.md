@@ -1,6 +1,6 @@
 # Portfolio — creative brief: "DEPARTURES"
 
-Owner: Aravind Srinivasan, founder and product engineer. All copy and facts come from `src/content/site.ts`. Never invent anything.
+Owner: Aravind Srinivasan, product engineer. All copy and facts come from `src/content/site.ts`. Never invent anything.
 
 ## Concept
 The portfolio is an airport departures board. Projects are "flights", the hero announces "Now boarding", and every label reads like flight-board type. The concept ties together the owner's airline-crew hackathon and a builder who keeps shipping. It should feel like an award-winning studio site, close to the references: editorial Swiss layout, a monochrome base with one loud accent, giant grotesk display type, mono micro-labels, and work shown large.
