@@ -158,3 +158,37 @@ test.describe("gates (pinned horizontal panels)", () => {
     });
   }
 });
+
+test.describe("case-study gallery and shortcuts", () => {
+  test("gallery is a carousel: arrows move it and a click opens a lightbox that Esc closes", async ({ page }) => {
+    await page.goto("/work/tagmycredit", { waitUntil: "networkidle" });
+    const gallery = page.locator("section[aria-label=Gallery]");
+    const track = gallery.getByRole("region");
+    await gallery.scrollIntoViewIfNeeded();
+    await expect(gallery.getByText(/^01$/).first()).toBeAttached();
+    await gallery.getByRole("button", { name: "Next screenshot" }).click();
+    await expect.poll(() => track.evaluate((el) => el.scrollLeft)).toBeGreaterThan(100);
+    await expect(gallery.locator("p[aria-live]")).toContainText("02");
+    await gallery.getByRole("button", { name: /^Open screenshot/ }).nth(1).click();
+    const dialog = page.getByRole("dialog");
+    await expect(dialog).toBeVisible();
+    await expect(dialog).toContainText("02 / ");
+    await page.keyboard.press("ArrowRight");
+    await expect(dialog).toContainText("03 / ");
+    await page.keyboard.press("Escape");
+    await expect(dialog).toHaveCount(0);
+    expect(page.url()).toContain("/work/tagmycredit");
+  });
+
+  test("keyboard: → / ← switch case studies and Esc returns to the board", async ({ page, isMobile }) => {
+    test.skip(isMobile, "keyboard shortcuts are a desktop affordance");
+    const [a, b] = [projects[0]!, projects[1]!];
+    await page.goto(`/work/${a.slug}`, { waitUntil: "networkidle" });
+    await page.keyboard.press("ArrowRight");
+    await page.waitForURL(`**/work/${b.slug}`);
+    await page.keyboard.press("ArrowLeft");
+    await page.waitForURL(`**/work/${a.slug}`);
+    await page.keyboard.press("Escape");
+    await page.waitForURL(/\/#work$/);
+  });
+});

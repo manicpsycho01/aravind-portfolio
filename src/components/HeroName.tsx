@@ -32,11 +32,16 @@ export function HeroName({ lines, className }: { lines: string[]; className?: st
             return tween;
           },
         });
+        const bar = gsap.fromTo("[data-bar]", { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: "expo.inOut", paused: true });
         whenRevealReady().then(() => {
           ready = true;
           tween?.play();
+          bar.delay(0.55).play();
         });
-        return () => split.revert();
+        return () => {
+          split.revert();
+          bar.kill();
+        };
       });
     },
     { scope: ref },
@@ -44,9 +49,13 @@ export function HeroName({ lines, className }: { lines: string[]; className?: st
 
   return (
     <h1 ref={ref} aria-label={lines.join(" ")} className={className}>
-      {lines.map((line) => (
-        <span key={line} data-line aria-hidden className="block">
-          {line}
+      {lines.map((line, i) => (
+        <span key={line} className="relative isolate block w-fit">
+          {/* The hero's one signal moment: a departure-row highlight behind the first name. */}
+          {i === 0 && <span data-bar aria-hidden className="absolute -inset-x-[0.03em] top-[-0.01em] bottom-[0.06em] -z-10 origin-left bg-signal" />}
+          <span data-line aria-hidden className="block">
+            {line}
+          </span>
         </span>
       ))}
     </h1>

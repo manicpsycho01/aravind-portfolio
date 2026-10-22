@@ -13,6 +13,7 @@ export function Cursor() {
   const root = useRef<HTMLDivElement>(null);
   const dot = useRef<HTMLDivElement>(null);
   const ring = useRef<HTMLDivElement>(null);
+  const disc = useRef<HTMLDivElement>(null);
   const [label, setLabel] = useState<string | null>(null);
   const [hovering, setHovering] = useState(false);
 
@@ -23,16 +24,16 @@ export function Cursor() {
         const html = document.documentElement;
         const dx = gsap.quickTo(dot.current, "x", { duration: 0.08 });
         const dy = gsap.quickTo(dot.current, "y", { duration: 0.08 });
-        const rx = gsap.quickTo(ring.current, "x", { duration: 0.45, ease: "power3.out" });
-        const ry = gsap.quickTo(ring.current, "y", { duration: 0.45, ease: "power3.out" });
+        const rx = gsap.quickTo([ring.current, disc.current], "x", { duration: 0.45, ease: "power3.out" });
+        const ry = gsap.quickTo([ring.current, disc.current], "y", { duration: 0.45, ease: "power3.out" });
         let shown = false;
-        gsap.set([dot.current, ring.current], { xPercent: -50, yPercent: -50 });
+        gsap.set([dot.current, ring.current, disc.current], { xPercent: -50, yPercent: -50 });
 
         const move = (e: PointerEvent) => {
           if (e.pointerType !== "mouse") return;
           if (!shown) {
             shown = true;
-            gsap.set([dot.current, ring.current], { x: e.clientX, y: e.clientY });
+            gsap.set([dot.current, ring.current, disc.current], { x: e.clientX, y: e.clientY });
             gsap.to(root.current, { autoAlpha: 1, duration: 0.2 });
           }
           dx(e.clientX);
@@ -66,19 +67,28 @@ export function Cursor() {
   );
 
   const active = label !== null;
+  // The ring and dot sit in a `mix-blend-difference` layer so they invert against whatever is underneath
+  // (dark on light paper, light on ink) and never disappear. The labelled disc lives in a normal layer
+  // so the signal orange stays true.
   return (
     <div ref={root} aria-hidden className="pointer-events-none fixed inset-0 z-[100] hidden opacity-0 fx:block">
+      <div className="absolute inset-0 mix-blend-difference">
+        <div
+          ref={ring}
+          className={`absolute top-0 left-0 rounded-full border-[1.5px] border-white transition-[width,height,opacity] duration-300 ease-out-expo ${
+            active ? "h-10 w-10 opacity-0" : hovering ? "h-14 w-14" : "h-10 w-10"
+          }`}
+        />
+        <div ref={dot} className={`absolute top-0 left-0 h-1.5 w-1.5 rounded-full bg-white ${active ? "opacity-0" : ""}`} />
+      </div>
       <div
-        ref={ring}
-        className={`absolute top-0 left-0 flex items-center justify-center rounded-full transition-[width,height,background-color,border-color] duration-300 ease-out-expo ${
-          active
-            ? "h-22 w-22 border-transparent bg-signal"
-            : `border border-paper mix-blend-difference ${hovering ? "h-14 w-14" : "h-10 w-10"}`
+        ref={disc}
+        className={`absolute top-0 left-0 flex items-center justify-center rounded-full bg-signal transition-[width,height,opacity] duration-300 ease-out-expo ${
+          active ? "h-22 w-22 opacity-100" : "h-10 w-10 opacity-0"
         }`}
       >
         {active && <span className="label font-medium text-ink">{label}</span>}
       </div>
-      <div ref={dot} className={`absolute top-0 left-0 h-1.5 w-1.5 rounded-full bg-paper mix-blend-difference ${active ? "opacity-0" : ""}`} />
     </div>
   );
 }

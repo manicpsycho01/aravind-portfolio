@@ -5,6 +5,9 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 
+/** The live Lenis instance, for components that must pause scrolling (e.g. the gallery lightbox). */
+export const lenisStore: { current: Lenis | null } = { current: null };
+
 /** Single root Lenis instance driven by the GSAP ticker so ScrollTrigger stays in sync. */
 export function SmoothScroll() {
   const lenisRef = useRef<Lenis | null>(null);
@@ -13,6 +16,7 @@ export function SmoothScroll() {
   useEffect(() => {
     const lenis = new Lenis({ autoRaf: false, lerp: 0.1, syncTouch: false });
     lenisRef.current = lenis;
+    lenisStore.current = lenis;
     lenis.on("scroll", ScrollTrigger.update);
     const tick = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(tick);
@@ -40,6 +44,7 @@ export function SmoothScroll() {
       gsap.ticker.remove(tick);
       lenis.destroy();
       lenisRef.current = null;
+      lenisStore.current = null;
     };
   }, []);
 

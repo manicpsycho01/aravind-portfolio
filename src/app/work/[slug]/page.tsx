@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { projects, type Project, type Shot } from "@/content/site";
+import { projects } from "@/content/site";
+import { CaseKeys } from "@/components/CaseKeys";
 import { DeviceFrame } from "@/components/DeviceFrame";
+import { Gallery } from "@/components/Gallery";
+import { NextFlight } from "@/components/NextFlight";
 import { Reveals } from "@/components/Reveals";
 import { StatusChip } from "@/components/StatusChip";
 
@@ -33,54 +35,12 @@ function Block({ index, title, children }: { index: string; title: string; child
   );
 }
 
-function GalleryItem({ shot, wide }: { shot: Shot; wide: boolean }) {
-  const bare = shot.device === "none";
-  return (
-    <figure data-reveal="clip" className={`${wide ? "md:col-span-12" : "md:col-span-6"} flex flex-col gap-3`}>
-      <div className={`group overflow-hidden rounded-xl ${bare || shot.device === "phone" ? "bg-graphite px-6 py-10 md:py-16" : ""}`}>
-        <DeviceFrame shot={shot} sizes={wide ? "(min-width: 768px) 92vw, 100vw" : "(min-width: 768px) 46vw, 100vw"} className={bare ? "mx-auto max-w-md" : ""} />
-      </div>
-      <figcaption className="label text-muted">{shot.alt}</figcaption>
-    </figure>
-  );
-}
-
-function NextFlight({ project }: { project: Project }) {
-  return (
-    <Link
-      href={`/work/${project.slug}`}
-      data-cursor="VIEW"
-      className="group gutter relative block overflow-hidden border-t border-line py-16 md:py-24"
-    >
-      <span className="label flex flex-col gap-1 text-muted sm:flex-row sm:justify-between sm:gap-6">
-        <span className="shrink-0">Next flight · Flt {project.no}</span>
-        <span>{project.kicker}</span>
-      </span>
-      <span className="display mt-8 block text-[clamp(3.5rem,14vw,10rem)] transition-transform duration-700 ease-out-expo group-hover:translate-x-4 md:max-w-[62vw]">
-        {project.title}&nbsp;<span aria-hidden>→</span>
-      </span>
-      <span
-        aria-hidden
-        className="pointer-events-none absolute top-1/2 right-[6vw] hidden w-[26vw] -translate-y-1/2 overflow-hidden rounded-lg bg-graphite [clip-path:inset(50%_0_50%_0)] transition-[clip-path] duration-700 ease-out-expo group-hover:[clip-path:inset(0_0_0_0)] desk:block"
-      >
-        <Image
-          src={project.cover.src}
-          alt=""
-          width={project.cover.w}
-          height={project.cover.h}
-          sizes="26vw"
-          className={`h-auto w-full transition-transform duration-1000 ease-out-expo group-hover:scale-105 ${project.cover.device === "none" ? "p-6" : ""}`}
-        />
-      </span>
-    </Link>
-  );
-}
-
 export default async function CaseStudy({ params }: Props) {
   const index = find((await params).slug);
   if (index < 0) notFound();
   const p = projects[index];
   const next = projects[(index + 1) % projects.length];
+  const prev = projects[(index - 1 + projects.length) % projects.length];
   const meta: [string, React.ReactNode][] = [
     ["Role", p.role],
     ["Year", p.year],
@@ -188,10 +148,8 @@ export default async function CaseStudy({ params }: Props) {
           <span>(05)</span>
           <span>Gallery</span>
         </h2>
-        <div className="mt-12 grid gap-x-6 gap-y-14 md:grid-cols-12">
-          {p.gallery.map((shot, i) => (
-            <GalleryItem key={shot.src} shot={shot} wide={i % 3 === 0 || (i === p.gallery.length - 1 && i % 3 === 1)} />
-          ))}
+        <div data-reveal className="mt-10">
+          <Gallery shots={p.gallery} tint={p.tint} title={p.title} />
         </div>
       </section>
 
@@ -206,6 +164,7 @@ export default async function CaseStudy({ params }: Props) {
       </Block>
 
       <NextFlight project={next} />
+      <CaseKeys prev={`/work/${prev.slug}`} next={`/work/${next.slug}`} />
       <Reveals />
     </article>
   );
