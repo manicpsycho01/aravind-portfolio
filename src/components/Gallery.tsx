@@ -86,12 +86,12 @@ export function Gallery({ shots, tint, title }: { shots: Shot[]; tint: string; t
               onClick={() => setOpen(i)}
               aria-label={`Open screenshot: ${shot.alt}`}
               className={`group block w-full cursor-zoom-in text-left ${
-                phones ? "" : "overflow-hidden rounded-xl px-5 pt-14 pb-6 md:px-14 md:pt-20 md:pb-12"
+                phones ? "" : "overflow-hidden rounded-xl px-3 pt-12 pb-3 md:px-14 md:pt-20 md:pb-12"
               }`}
               style={phones ? undefined : { background: `linear-gradient(160deg, ${tint} 0%, color-mix(in srgb, ${tint} 72%, black) 100%)` }}
             >
               {!phones && (
-                <figcaption className="label absolute top-5 left-5 right-5 flex justify-between gap-4 text-paper/80 md:top-7 md:left-8 md:right-8">
+                <figcaption className="label absolute top-4 left-4 right-4 flex justify-between gap-4 text-paper/80 md:top-7 md:left-8 md:right-8">
                   <span>{shot.alt}</span>
                   <span className="shrink-0">{pad(i + 1)}</span>
                 </figcaption>

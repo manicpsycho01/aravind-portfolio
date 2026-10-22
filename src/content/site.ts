@@ -166,7 +166,7 @@ export const projects: Project[] = [
       { value: "~1s", label: "to stock the fridge or log a cooked meal (batched writes)" },
       { value: "iOS", label: "running on iPhone via Expo, one codebase for Android" },
     ],
-    stack: ["React Native", "Expo SDK 58", "TypeScript", "Expo Router", "Reanimated", "Supabase", "Edge Functions", "Google Gemini"],
+    stack: ["React Native", "Expo SDK 57", "TypeScript", "Expo Router", "Reanimated", "Supabase", "Edge Functions", "Google Gemini"],
     links: [{ label: "GitHub", href: "https://github.com/manicpsycho01/fridgemate-ai" }],
     cover: { src: "/work/fridgemate/home.jpg", alt: "FridgeMate AI home: 6 items, 1 to use soon, Use first card for chicken", w: 780, h: 1688, device: "phone" },
     gallery: [
