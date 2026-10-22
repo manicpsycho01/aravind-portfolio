@@ -21,7 +21,15 @@ export const person = {
     "Software should earn trust. Let the deterministic parts compute, let the AI explain, and design every screen so a real person can make a real decision with it.",
 };
 
-export type Shot = { src: string; alt: string; w: number; h: number; device?: "browser" | "phone" | "none" };
+export type Shot = {
+  src: string;
+  alt: string;
+  w: number;
+  h: number;
+  device?: "browser" | "phone" | "none";
+  /** Phones: the point (x%, y% of the image) the magnified view centres on, so wide screenshots stay readable. */
+  focus?: [number, number];
+}
 
 export type Project = {
   slug: string;
@@ -83,12 +91,12 @@ export const projects: Project[] = [
       { label: "Live website", href: "https://tagmycredit-deploy.vercel.app" },
       { label: "GitHub (MVP)", href: "https://github.com/manicpsycho01/tagmycredit-app" },
     ],
-    cover: { src: "/work/tagmycredit/home.jpg", alt: "TagMyCredit dashboard for a supplier credit manager", w: 1600, h: 950, device: "browser" },
+    cover: { src: "/work/tagmycredit/home.jpg", alt: "TagMyCredit dashboard for a supplier credit manager", w: 1600, h: 950, device: "browser", focus: [30, 40] },
     gallery: [
-      { src: "/work/tagmycredit/website.jpg", alt: "TagMyCredit marketing website hero", w: 1600, h: 950, device: "browser" },
-      { src: "/work/tagmycredit/score-red.jpg", alt: "Trade Risk Score card for a buyer in default", w: 1600, h: 950, device: "browser" },
-      { src: "/work/tagmycredit/map.jpg", alt: "Supply-chain project map with tiers and risk lights", w: 1600, h: 950, device: "browser" },
-      { src: "/work/tagmycredit/confirm.jpg", alt: "CFO confirming a credit line with a one-time code", w: 1600, h: 950, device: "browser" },
+      { src: "/work/tagmycredit/website.jpg", alt: "TagMyCredit marketing website hero", w: 1600, h: 950, device: "browser", focus: [28, 45] },
+      { src: "/work/tagmycredit/score-red.jpg", alt: "Trade Risk Score card for a buyer in default", w: 1600, h: 950, device: "browser", focus: [35, 45] },
+      { src: "/work/tagmycredit/map.jpg", alt: "Supply-chain project map with tiers and risk lights", w: 1600, h: 950, device: "browser", focus: [40, 62] },
+      { src: "/work/tagmycredit/confirm.jpg", alt: "CFO confirming a credit line with a one-time code", w: 1600, h: 950, device: "browser", focus: [30, 45] },
       { src: "/work/tagmycredit/phone-home.jpg", alt: "TagMyCredit mobile web app home screen", w: 780, h: 1688, device: "phone" },
     ],
     tint: "#0B3D3A",
@@ -126,13 +134,13 @@ export const projects: Project[] = [
     ],
     stack: ["Python 3.10+ (stdlib only)", "LLM agent loop", "Claim gate", "Vanilla JS workspace", "jsdom tests", "OpenAI-compatible API"],
     links: [{ label: "GitHub", href: "https://github.com/manicpsycho01/vista-crew" }],
-    cover: { src: "/work/aircrew/04-ranked-cover.png", alt: "Ranked cover options for a pairing after a captain is lost", w: 1600, h: 950, device: "browser" },
+    cover: { src: "/work/aircrew/04-ranked-cover.png", alt: "Ranked cover options for a pairing after a captain is lost", w: 1600, h: 950, device: "browser", focus: [44, 28] },
     gallery: [
-      { src: "/work/aircrew/01-landing.png", alt: "Crew Ops Advisor workspace landing", w: 1600, h: 950, device: "browser" },
-      { src: "/work/aircrew/05-exclusions.png", alt: "Ruled-out candidates with the rule that stopped each one", w: 1600, h: 950, device: "browser" },
-      { src: "/work/aircrew/09-duty-timeline.png", alt: "Duty-week timeline showing the rest gap", w: 1600, h: 950, device: "browser" },
-      { src: "/work/aircrew/12-joint-plan.png", alt: "Joint plan for two simultaneous sick calls", w: 1600, h: 950, device: "browser" },
-      { src: "/work/aircrew/02-boundary.png", alt: "Boundary diagram: what the engine computes vs what the model may say", w: 1600, h: 950, device: "browser" },
+      { src: "/work/aircrew/01-landing.png", alt: "Crew Ops Advisor workspace landing", w: 1600, h: 950, device: "browser", focus: [14, 24] },
+      { src: "/work/aircrew/05-exclusions.png", alt: "Ruled-out candidates with the rule that stopped each one", w: 1600, h: 950, device: "browser", focus: [44, 35] },
+      { src: "/work/aircrew/09-duty-timeline.png", alt: "Duty-week timeline showing the rest gap", w: 1600, h: 950, device: "browser", focus: [42, 45] },
+      { src: "/work/aircrew/12-joint-plan.png", alt: "Joint plan for two simultaneous sick calls", w: 1600, h: 950, device: "browser", focus: [44, 22] },
+      { src: "/work/aircrew/02-boundary.png", alt: "Boundary diagram: what the engine computes vs what the model may say", w: 1600, h: 950, device: "browser", focus: [46, 32] },
     ],
     tint: "#1B2A4A",
   },

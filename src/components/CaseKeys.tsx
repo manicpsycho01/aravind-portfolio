@@ -1,11 +1,18 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 /** Case-study keyboard shortcuts: ← / → previous / next project, Esc back to the departures board. */
 export function CaseKeys({ prev, next }: { prev: string; next: string }) {
   const router = useRouter();
+  const [hint, setHint] = useState(true);
+
+  // The hint is a one-time reminder; it fades so it never sits over the content.
+  useEffect(() => {
+    const t = setTimeout(() => setHint(false), 5000);
+    return () => clearTimeout(t);
+  }, []);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -23,7 +30,7 @@ export function CaseKeys({ prev, next }: { prev: string; next: string }) {
   }, [router, prev, next]);
 
   return (
-    <p aria-hidden className="label pointer-events-none fixed bottom-6 left-6 z-40 hidden rounded-full bg-ink/85 px-3 py-2 text-paper/80 backdrop-blur-sm desk:block">
+    <p aria-hidden className={`label pointer-events-none fixed bottom-6 left-6 z-40 hidden rounded-full bg-ink/85 px-3 py-2 text-paper/80 backdrop-blur-sm transition-opacity duration-700 desk:block ${hint ? "opacity-100" : "opacity-0"}`}>
       ← → flights · Esc board
     </p>
   );

@@ -3,7 +3,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects } from "@/content/site";
 import { CaseKeys } from "@/components/CaseKeys";
-import { DeviceFrame } from "@/components/DeviceFrame";
 import { Gallery } from "@/components/Gallery";
 import { NextFlight } from "@/components/NextFlight";
 import { Reveals } from "@/components/Reveals";
@@ -84,16 +83,11 @@ export default async function CaseStudy({ params }: Props) {
         </dl>
       </header>
 
-      <div className="gutter mt-12 md:mt-20">
-        <div data-reveal="wipe" className="overflow-hidden rounded-xl px-4 py-10 md:px-[8vw] md:py-[7vw]" style={{ backgroundColor: p.tint }}>
-          <DeviceFrame
-            shot={p.cover}
-            sizes="(min-width: 768px) 80vw, 100vw"
-            priority
-            className={p.cover.device === "none" ? "mx-auto max-w-xl" : ""}
-          />
+      <section aria-label="Gallery" className="gutter mt-12 md:mt-20">
+        <div data-reveal="wipe">
+          <Gallery shots={[p.cover, ...p.gallery]} tint={p.tint} title={p.title} />
         </div>
-      </div>
+      </section>
 
       <section aria-label="Summary" className="gutter py-20 md:py-32">
         <p data-reveal className="max-w-5xl text-[clamp(1.6rem,3.6vw,3.5rem)] leading-[1.08] font-medium tracking-[-0.03em]">
@@ -143,17 +137,7 @@ export default async function CaseStudy({ params }: Props) {
         </div>
       </section>
 
-      <section aria-label="Gallery" className="gutter py-20 md:py-32">
-        <h2 className="label flex justify-between border-t border-line pt-4 text-muted">
-          <span>(05)</span>
-          <span>Gallery</span>
-        </h2>
-        <div data-reveal className="mt-10">
-          <Gallery shots={p.gallery} tint={p.tint} title={p.title} />
-        </div>
-      </section>
-
-      <Block index="06" title="Stack">
+      <Block index="05" title="Stack">
         <ul className="flex flex-wrap gap-2">
           {p.stack.map((s) => (
             <li key={s} className="label rounded-full border border-ink/25 px-4 py-2.5">

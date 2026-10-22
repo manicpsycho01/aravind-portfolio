@@ -208,3 +208,36 @@ test("home: the numbers section is gone", async ({ page }) => {
   await page.goto("/", { waitUntil: "networkidle" });
   await expect(page.getByText(/\(0\d\) Numbers/i)).toHaveCount(0);
 });
+
+test("case study: one gallery, at the top, before the write-up", async ({ page }) => {
+  for (const p of projects) {
+    await page.goto(`/work/${p.slug}`, { waitUntil: "networkidle" });
+    await expect(page.locator("section[aria-label=Gallery]")).toHaveCount(1);
+    await expect(page.locator("section[aria-label=Gallery] [data-slide]")).toHaveCount(p.gallery.length + 1);
+    const order = await page.evaluate(() => {
+      const g = document.querySelector("section[aria-label=Gallery]")!.getBoundingClientRect().top;
+      const s = document.querySelector("section[aria-label=Summary]")!.getBoundingClientRect().top;
+      return g < s;
+    });
+    expect(order, `${p.slug}: gallery comes before the summary`).toBe(true);
+  }
+});
+
+test("phones: wide screenshots show a readable crop and pan full-height in the lightbox", async ({ page, isMobile }) => {
+  test.skip(!isMobile, "phone layout");
+  await page.goto("/work/crew-ops-advisor", { waitUntil: "networkidle" });
+  const first = page.locator("section[aria-label=Gallery] [data-slide='0']");
+  const crop = first.locator("img[alt='']");
+  await expect(crop).toBeVisible();
+  // magnified: the image is about three times the slide width, so its text is legible
+  const [img, slide] = await Promise.all([crop.boundingBox(), first.boundingBox()]);
+  expect(img!.width / slide!.width).toBeGreaterThan(2.5);
+  await first.getByRole("button").click();
+  const dialog = page.getByRole("dialog");
+  await expect(dialog).toContainText("Drag sideways");
+  const pan = await dialog.locator(".overflow-x-auto").evaluate((el) => ({ sw: el.scrollWidth, cw: el.clientWidth, left: el.scrollLeft }));
+  expect(pan.sw).toBeGreaterThan(pan.cw * 1.5);
+  expect(pan.left).toBeGreaterThan(0);
+  await dialog.getByRole("button", { name: "Close" }).click();
+  await expect(dialog).toHaveCount(0);
+});
