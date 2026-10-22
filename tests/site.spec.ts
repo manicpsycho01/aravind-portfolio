@@ -127,3 +127,34 @@ test.describe("nav anchor links", () => {
     }
   });
 });
+
+test.describe("gates (pinned horizontal panels)", () => {
+  test.skip(({ isMobile }) => isMobile, "pinned gates are desktop-only");
+
+  for (const [w, h] of [[1440, 790], [1280, 680]] as const) {
+    test(`every panel's text fits the visible screen while pinned at ${w}x${h}`, async ({ page }) => {
+      await page.setViewportSize({ width: w, height: h });
+      await page.goto("/", { waitUntil: "networkidle" });
+      await page.waitForTimeout(1500);
+      const { top, dist } = await page.evaluate(() => {
+        const wrap = document.getElementById("gates-title")!.closest("section")!.parentElement!;
+        const track = document.querySelector<HTMLElement>("[data-track]")!;
+        return { top: wrap.getBoundingClientRect().top + window.scrollY, dist: track.scrollWidth - window.innerWidth };
+      });
+      for (const f of [0.32, 0.62, 0.97]) {
+        await page.evaluate((y) => window.scrollTo(0, y), top + dist * f);
+        await page.waitForTimeout(1400);
+        const clipped = await page.evaluate(() =>
+          [...document.querySelectorAll("[data-panel]")].flatMap((panel) => {
+            const r = panel.getBoundingClientRect();
+            if (r.right < 0 || r.left > innerWidth) return [];
+            return [...panel.querySelectorAll("h3, p, ul, a")]
+              .filter((e) => { const q = e.getBoundingClientRect(); return q.width > 0 && q.left < innerWidth && q.right > 0 && (q.bottom > innerHeight + 1 || q.top < 0); })
+              .map((e) => `${e.tagName}:${(e.textContent ?? "").slice(0, 24)}`);
+          }),
+        );
+        expect(clipped, `clipped at ${Math.round(f * 100)}%`).toEqual([]);
+      }
+    });
+  }
+});
