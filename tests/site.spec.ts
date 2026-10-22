@@ -257,3 +257,26 @@ test("LinkedIn is linked in the contact band and footer", async ({ page }) => {
   await page.goto("/", { waitUntil: "networkidle" });
   await expect(page.locator('a[href="https://www.linkedin.com/in/aravind-srinivasan07"]')).toHaveCount(2);
 });
+
+test("hero: the intro sits beside the name on its baseline when there is room, and never overlaps it", async ({ page, isMobile }) => {
+  test.skip(isMobile, "desktop sizes");
+  for (const [w, h] of [[1400, 660], [1536, 730], [1680, 860], [1440, 900], [1920, 1080], [1366, 768]] as const) {
+    await page.setViewportSize({ width: w, height: h });
+    await page.goto("/", { waitUntil: "networkidle" });
+    const r = await page.evaluate(() => {
+      const lines = [...document.querySelectorAll("h1 [data-line]")];
+      const last = lines.at(-1)!.getBoundingClientRect();
+      const nameRight = Math.max(...lines.map((l) => l.getBoundingClientRect().right));
+      const font = parseFloat(getComputedStyle(lines[0]!).fontSize);
+      const intro = [...document.querySelectorAll("section[aria-label=Introduction] p")].find((p) => p.textContent!.startsWith("I build"))!;
+      const ib = intro.getBoundingClientRect();
+      return { beside: getComputedStyle(intro).position === "absolute", gap: ib.left - nameRight, baselineDelta: ib.bottom - (last.bottom - 0.1 * font), introBottom: ib.bottom, nameTop: lines[0]!.getBoundingClientRect().top };
+    });
+    if (r.beside) {
+      expect(r.gap, `${w}x${h} gap`).toBeGreaterThanOrEqual(24);
+      expect(Math.abs(r.baselineDelta), `${w}x${h} baseline`).toBeLessThanOrEqual(10);
+    } else {
+      expect(r.introBottom, `${w}x${h} intro above name`).toBeLessThanOrEqual(r.nameTop);
+    }
+  }
+});

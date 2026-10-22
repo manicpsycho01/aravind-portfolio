@@ -15,7 +15,7 @@ export default function Home() {
       <section aria-label="Introduction" className="gutter relative flex flex-col overflow-hidden pt-28 pb-4 md:min-h-[100svh]">
         <DotGridCanvas className="absolute inset-0 size-full" />
 
-        <div className="relative flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+        <div className="relative flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between roomy:static">
           <div className="flex flex-col gap-3">
             <p className="label">Now boarding →</p>
             <SplitFlap
@@ -24,7 +24,10 @@ export default function Home() {
               className="w-full md:w-[min(60vw,760px)] lg:w-[min(48vw,760px)]"
             />
           </div>
-          <p className="max-w-[34ch] text-base leading-snug text-muted md:text-lg lg:max-w-[30ch] lg:text-right">{person.intro}</p>
+          {/* Its last line sits on SRINIVASAN's baseline: hero bottom → name line box (~86px + 7px text descent) + 0.1em of the name. */}
+          <p className="max-w-[34ch] text-base leading-snug text-muted md:text-lg lg:max-w-[30ch] lg:text-right roomy:absolute roomy:right-[var(--gutter)] roomy:bottom-[calc(86px+(100svh-370px)/16.5)] roomy:z-10">
+            {person.intro}
+          </p>
         </div>
 
         <div className="relative mt-4 pt-8 md:mt-auto [container-type:inline-size]">

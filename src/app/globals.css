@@ -29,6 +29,26 @@
   }
 }
 
+/* Desktop screens wide enough that the height-fitted hero name leaves room beside it
+   (width ≳ 2.42 × height − 457px, banded): the intro moves down beside the name. */
+@custom-variant roomy {
+  @media (min-width: 1024px) and (min-height: 490px) and (max-height: 600px),
+    (min-width: 1143px) and (min-height: 490px) and (max-height: 660px),
+    (min-width: 1240px) and (min-height: 490px) and (max-height: 700px),
+    (min-width: 1385px) and (min-height: 490px) and (max-height: 760px),
+    (min-width: 1482px) and (min-height: 490px) and (max-height: 800px),
+    (min-width: 1628px) and (min-height: 490px) and (max-height: 860px),
+    (min-width: 1725px) and (min-height: 490px) and (max-height: 900px),
+    (min-width: 1967px) and (min-height: 490px) and (max-height: 1000px),
+    (min-width: 2210px) and (min-height: 490px) and (max-height: 1100px),
+    (min-width: 2452px) and (min-height: 490px) and (max-height: 1200px),
+    (min-width: 2694px) and (min-height: 490px) and (max-height: 1300px),
+    (min-width: 3034px) and (min-height: 490px) and (max-height: 1440px) {
+    @slot;
+  }
+}
+
+
 @utility label {
   font-family: var(--font-mono);
   font-size: 11px;
