@@ -12,7 +12,7 @@ import { SplitFlap } from "@/components/SplitFlap";
 export default function Home() {
   return (
     <>
-      <section aria-label="Introduction" className="gutter relative flex flex-col overflow-hidden pt-28 pb-4 md:min-h-[100svh]">
+      <section aria-label="Introduction" className="gutter relative flex min-h-[100svh] flex-col overflow-hidden pt-28 pb-4">
         <DotGridCanvas className="absolute inset-0 size-full" />
 
         <div className="relative flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between roomy:static">
@@ -30,7 +30,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="relative mt-4 pt-8 md:mt-auto [container-type:inline-size]">
+        <div className="relative mt-auto pt-8 [container-type:inline-size]">
           <HeroName lines={[person.first, person.last]} className="display text-[calc(100cqw/4.02)] leading-[0.8] whitespace-nowrap md:text-[min(calc(100cqw/4.02),max(4.5rem,calc((100svh-370px)/1.65)))]" />
         </div>
 

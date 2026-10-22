@@ -15,11 +15,11 @@ export function SiteHeader() {
         </p>
       </div>
 
-      <nav aria-label="Primary" className="label hidden gap-8 md:flex">
-        <Link href="/#work" className="link-u">
+      <nav aria-label="Primary" className="label -mt-3 hidden gap-8 md:flex">
+        <Link href="/#work" className="link-u inline-flex min-h-11 items-center">
           (01) Work
         </Link>
-        <Link href="/#contact" className="link-u">
+        <Link href="/#contact" className="link-u inline-flex min-h-11 items-center">
           (02) Contact
         </Link>
       </nav>

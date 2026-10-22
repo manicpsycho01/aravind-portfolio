@@ -63,7 +63,7 @@ export default async function CaseStudy({ params }: Props) {
           {p.kicker}
         </p>
 
-        <dl className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-line pt-6 md:mt-16 md:grid-cols-6">
+        <dl className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-line pt-6 md:mt-16 md:grid-cols-4 lg:grid-cols-6">
           {meta.map(([label, value]) => (
             <div key={label} className={label === "Role" ? "col-span-2" : ""}>
               <dt className="label text-muted">{label}</dt>
