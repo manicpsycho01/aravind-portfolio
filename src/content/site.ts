@@ -79,8 +79,9 @@ export const projects: Project[] = [
     ],
     stack: ["Next.js 16", "React 19", "TypeScript", "PostgreSQL 17 · RLS", "Drizzle ORM", "Better Auth", "Zod", "Vitest", "Playwright", "Vercel"],
     links: [
+      { label: "Live MVP demo", href: "https://tagmycredit-app.vercel.app/demo" },
       { label: "Live website", href: "https://tagmycredit-deploy.vercel.app" },
-      { label: "GitHub", href: "https://github.com/manicpsycho01/TagMyCredit" },
+      { label: "GitHub (MVP)", href: "https://github.com/manicpsycho01/tagmycredit-app" },
     ],
     cover: { src: "/work/tagmycredit/home.jpg", alt: "TagMyCredit dashboard for a supplier credit manager", w: 1600, h: 950, device: "browser" },
     gallery: [
@@ -166,7 +167,7 @@ export const projects: Project[] = [
       { value: "iOS", label: "running on iPhone via Expo, one codebase for Android" },
     ],
     stack: ["React Native", "Expo SDK 58", "TypeScript", "Expo Router", "Reanimated", "Supabase", "Edge Functions", "Google Gemini"],
-    links: [{ label: "GitHub", href: "https://github.com/manicpsycho01/FridgeMate" }],
+    links: [{ label: "GitHub", href: "https://github.com/manicpsycho01/fridgemate-ai" }],
     cover: { src: "/work/fridgemate/home.jpg", alt: "FridgeMate AI home: 6 items, 1 to use soon, Use first card for chicken", w: 780, h: 1688, device: "phone" },
     gallery: [
       { src: "/work/fridgemate/welcome.jpg", alt: "Welcome screen: Cook what you already have", w: 780, h: 1688, device: "phone" },
