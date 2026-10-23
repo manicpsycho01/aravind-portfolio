@@ -284,6 +284,56 @@ export const projects: Project[] = [
     ],
     tint: "#2B2A22",
   },
+  {
+    slug: "split-settle",
+    no: "06",
+    title: "Split & Settle",
+    kicker: "Personal project · Bill splitting for friends in India, settled by UPI",
+    year: "2026",
+    status: "Live",
+    type: "Personal project",
+    role: "Solo — product, design and engineering",
+    summary:
+      "Add what everyone paid; Split & Settle works out who owes whom to the paisa and turns it into UPI payments friends make in a tap — a QR on a laptop. Friends join with a WhatsApp link, no sign-up, and every phone updates live. It also imports a group straight from a Splitwise export.",
+    problem:
+      "Splitting a Goa trip means a spreadsheet, a calculator and twelve 'who paid for the cab?' messages. Splitwise needs everyone to sign up, rounds to the rupee, and stops at 'you owe ₹4,655' — the actual payment still happens somewhere else.",
+    approach: [
+      "Money in integer paise with largest-remainder rounding, so every split adds up exactly; settle-up suggestions in at most n−1 payments, stable so recording one doesn't reshuffle the rest.",
+      "Guest sign-in with personal, single-use invite links — after debating the plan with a second AI reviewer, who caught that a shared link lets anyone claim a friend's name.",
+      "Trust built into the database: Postgres row-level security, server functions for joining and importing, a trigger that rejects shares that don't add up, and an audit log of every change.",
+      "Splitwise import from the official spreadsheet export rather than an API login — its terms require a commercial licence — rebuilt row by row and checked against Splitwise's own totals.",
+    ],
+    built: [
+      "Expo (React Native) app shipped first as an installable web app on Vercel, ready for the App Store later; Supabase with realtime sync and guest auth.",
+      "Equal, exact, shares and percentage splits with live validation; edit, delete and restore with author/admin permissions; activity feed.",
+      "Settle-up with UPI intent links (GPay, PhonePe, Paytm), a scannable QR on desktop, copy-UPI-ID fallback, and payment records anyone involved can undo.",
+      "Personal and group invite links with QR and WhatsApp share, admin link reset and unlinking, plus an on-device demo group for visitors.",
+    ],
+    results: [
+      { value: "₹0.00", label: "rounding drift — splits checked across 2,300 randomised cases" },
+      { value: "12", label: "live access-rule tests with four guest users against the real database" },
+      { value: "65", label: "browser tests, incl. two friends syncing live and a Splitwise import" },
+      { value: "17", label: "screen sizes audited for overflow and overlaps" },
+    ],
+    stack: ["Expo SDK 57", "React Native Web", "TypeScript", "Supabase (Postgres, RLS, Realtime, anonymous auth)", "Reanimated", "Vitest", "Playwright", "Vercel"],
+    links: [
+      { label: "Live app", href: "https://split-settle-iota.vercel.app" },
+      { label: "Try the demo", href: "https://split-settle-iota.vercel.app/demo" },
+      { label: "GitHub", href: "https://github.com/manicpsycho01/split-settle" },
+    ],
+    cover: { src: "/work/split-settle/landing.jpg", alt: "Split & Settle: split the bill, settle in one UPI tap", w: 1600, h: 950, device: "browser", focus: [25, 40] },
+    gallery: [
+      { src: "/work/split-settle/group.jpg", alt: "A group: your balance and the expense list", w: 1600, h: 950, device: "browser", focus: [50, 40] },
+      { src: "/work/split-settle/settle.jpg", alt: "Suggested payments that settle everyone", w: 1600, h: 950, device: "browser", focus: [50, 62] },
+      { src: "/work/split-settle/pay.jpg", alt: "Pay sheet with a scannable UPI QR on desktop", w: 1600, h: 950, device: "browser", focus: [42, 70] },
+      { src: "/work/split-settle/expense.jpg", alt: "Adding an expense split by shares", w: 1600, h: 950, device: "browser", focus: [50, 60] },
+      { src: "/work/split-settle/import.jpg", alt: "Splitwise import preview, checked against Splitwise's own totals", w: 1600, h: 950, device: "browser", focus: [50, 50] },
+      { src: "/work/split-settle/phone-landing.jpg", alt: "Split & Settle on a phone", w: 780, h: 1688, device: "phone" },
+      { src: "/work/split-settle/phone-group.jpg", alt: "A group on a phone", w: 780, h: 1688, device: "phone" },
+      { src: "/work/split-settle/phone-settle.jpg", alt: "Settle up on a phone", w: 780, h: 1688, device: "phone" },
+    ],
+    tint: "#2A2410",
+  },
 ];
 
 export const capabilities = [
