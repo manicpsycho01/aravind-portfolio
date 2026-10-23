@@ -49,30 +49,33 @@ export default async function CaseStudy({ params }: Props) {
 
   return (
     <article>
-      <header className="gutter pt-36 md:pt-44">
+      <header className="gutter pt-28">
+        {/* Screens too short for the facts strip push it whole below the fold instead of slicing it. */}
+        <div className="max-md:[@media(max-height:600px)]:min-h-[calc(100svh-7rem)] [@media(max-height:420px)]:min-h-[calc(100svh-7rem)]">
         <p className="label flex justify-between border-t border-line pt-4 text-muted">
           <Link href="/#work" className="link-u inline-flex min-h-11 items-center self-start">
             ← All departures
           </Link>
           <span className="pt-3.5">Flt {p.no} / [ {p.year} ]</span>
         </p>
-        <h1 data-reveal className="display mt-8 text-[clamp(3.5rem,12.5vw,14.5rem)] break-words md:mt-12">
+        <h1 data-reveal className="display mt-6 text-[clamp(3.5rem,min(12.5vw,22svh),14.5rem)] break-words md:mt-8">
           {p.title}
         </h1>
-        <p data-reveal data-delay="0.1" className="mt-6 max-w-3xl text-xl leading-snug md:mt-10 md:text-3xl md:tracking-[-0.02em]">
+        <p data-reveal data-delay="0.1" className="mt-5 max-w-3xl text-xl leading-snug md:mt-6 md:text-3xl md:tracking-[-0.02em]">
           {p.kicker}
         </p>
+        </div>
 
-        <dl className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-line pt-6 md:mt-16 md:grid-cols-4 lg:grid-cols-6">
+        <dl data-facts className="mt-8 grid grid-cols-2 gap-x-6 gap-y-6 border-t border-line pt-5 md:mt-10 md:grid-cols-4 lg:grid-cols-7">
           {meta.map(([label, value]) => (
             <div key={label} className={label === "Role" ? "col-span-2" : ""}>
               <dt className="label text-muted">{label}</dt>
               <dd className="mt-2 text-sm leading-snug">{value}</dd>
             </div>
           ))}
-          <div>
+          <div className="col-span-2">
             <dt className="label text-muted">Links</dt>
-            <dd className="mt-1 flex flex-col">
+            <dd className="mt-1 flex flex-wrap gap-x-6">
               {p.links.map((l) => (
                 <a key={l.href} href={l.href} target="_blank" rel="noreferrer" className="link-u inline-flex min-h-11 items-center self-start text-sm">
                   {l.label} ↗

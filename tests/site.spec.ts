@@ -280,3 +280,18 @@ test("hero: the intro sits beside the name on its baseline when there is room, a
     }
   }
 });
+
+test("case study: the role/status/links strip is never cut by the first screen (whole, or wholly below)", async ({ page, isMobile }) => {
+  test.skip(isMobile, "the loop sets its own sizes");
+  const sizes = [[320, 568], [360, 740], [390, 844], [393, 852], [430, 932], [844, 390], [768, 1024], [820, 1180], [1024, 768], [1024, 1366], [1280, 600], [1280, 800], [1366, 768], [1440, 900], [1536, 864], [1920, 1080], [2560, 1440], [1400, 660], [1536, 730]] as const;
+  for (const [w, h] of sizes) {
+    await page.setViewportSize({ width: w, height: h });
+    for (const p of projects) {
+      await page.goto(`/work/${p.slug}`, { waitUntil: "domcontentloaded" });
+      const box = (await page.locator("[data-facts]").boundingBox())!;
+      const at = `${p.slug} ${w}x${h}`;
+      if (w >= 768 && h >= 600) expect(box.y + box.height, `${at}: strip fully on the first screen`).toBeLessThanOrEqual(h);
+      else expect(box.y + box.height <= h || box.y >= h, `${at}: strip sliced (${Math.round(box.y)}–${Math.round(box.y + box.height)})`).toBe(true);
+    }
+  }
+});
