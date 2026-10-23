@@ -188,6 +188,54 @@ export const projects: Project[] = [
     ],
     tint: "#1F4D3F",
   },
+  {
+    slug: "statement-autopsy",
+    no: "04",
+    title: "Statement Autopsy",
+    kicker: "Personal project · In-browser bank statement analyser for India",
+    year: "2026",
+    status: "Live",
+    type: "Personal project",
+    role: "Solo — product, design and engineering",
+    summary:
+      "Drop an Indian bank statement — CSV, Excel or PDF — and get a plain-English report of forgotten subscriptions, bank fees, double charges and the habits that quietly cost you, with what to do about each. The file never leaves the browser.",
+    problem:
+      "Bank statements hold the answer to 'where does my money go?', but they're a wall of cryptic UPI narrations. The tools that read them want your login or your data on their servers — a lot to ask for something this personal.",
+    approach: [
+      "Privacy as the architecture, not a policy: parsing and every check run in the browser — no server, no database, no account, no AI service.",
+      "Read real bank exports: header detection, wrapped narrations, newest-first files, Dr/Cr columns, card statements — and the running balance double-checks every sign.",
+      "Only honest numbers: the headline adds up concrete fixes (avoidable fees, overlapping subscriptions, two home-cooked meals a week), never 'all your delivery spend'.",
+      "Every finding is traceable — one click shows the exact payments behind it, and re-labelling a merchant re-runs the whole report.",
+    ],
+    built: [
+      "Readers for CSV, Excel and PDF (pdf.js, rows rebuilt from text positions), including password-protected e-statements.",
+      "Merchant recognition for ~120 Indian merchants plus UPI, NEFT, IMPS, ACH and POS narration parsing; unknown merchants still group by name.",
+      "Six checks: subscriptions (overlaps, price rises), bank fees, double charges, food delivery, small spends and cash — each with a next step and a yearly saving.",
+      "Report with vitals, charts, an evidence locker (search, filter, re-label), categorised CSV export and print-to-PDF, in light and dark mode.",
+    ],
+    results: [
+      { value: "0", label: "bytes of your statement uploaded — it's read on your device" },
+      { value: "3", label: "file formats: CSV, Excel and PDF (incl. password-protected)" },
+      { value: "118", label: "automated tests: 51 engine and 67 browser" },
+      { value: "17", label: "screen sizes audited for overflow and overlaps" },
+    ],
+    stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "GSAP + Lenis", "pdf.js", "SheetJS", "Papa Parse", "Vitest", "Playwright", "Vercel"],
+    links: [
+      { label: "Live app", href: "https://statement-autopsy-teal.vercel.app" },
+      { label: "GitHub", href: "https://github.com/manicpsycho01/statement-autopsy" },
+    ],
+    cover: { src: "/work/statement-autopsy/verdict.jpg", alt: "Autopsy report verdict: you could keep about ₹55,200 a year", w: 1600, h: 950, device: "browser", focus: [27, 40] },
+    gallery: [
+      { src: "/work/statement-autopsy/findings.jpg", alt: "Findings: subscriptions renewing and a possible double charge", w: 1600, h: 950, device: "browser", focus: [40, 40] },
+      { src: "/work/statement-autopsy/charts.jpg", alt: "Where the money went, by category and month", w: 1600, h: 950, device: "browser", focus: [22, 45] },
+      { src: "/work/statement-autopsy/locker.jpg", alt: "Evidence locker: re-labelling a merchant updates the report", w: 1600, h: 950, device: "browser", focus: [45, 40] },
+      { src: "/work/statement-autopsy/password.jpg", alt: "Opening a password-protected PDF statement", w: 1600, h: 950, device: "browser", focus: [24, 72] },
+      { src: "/work/statement-autopsy/phone-landing.jpg", alt: "Drop zone on a phone", w: 780, h: 1688, device: "phone" },
+      { src: "/work/statement-autopsy/phone-verdict.jpg", alt: "Report verdict and vitals on a phone", w: 780, h: 1688, device: "phone" },
+      { src: "/work/statement-autopsy/phone-finding.jpg", alt: "A bank-fee finding with what to do", w: 780, h: 1688, device: "phone" },
+    ],
+    tint: "#4A1D1A",
+  },
 ];
 
 export const capabilities = [
