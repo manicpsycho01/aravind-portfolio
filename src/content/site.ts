@@ -236,6 +236,54 @@ export const projects: Project[] = [
     ],
     tint: "#4A1D1A",
   },
+  {
+    slug: "recon",
+    no: "05",
+    title: "Recon",
+    kicker: "Personal project · Bank reconciliation for Indian businesses",
+    year: "2026",
+    status: "Live",
+    type: "Personal project",
+    role: "Solo — product, design and engineering",
+    summary:
+      "Drop a bank statement and an invoice list, and Recon matches every payment to its invoice — TDS deductions, bank charges, split and combined payments included — then shows what's still unpaid and drafts the reminder. It runs entirely in the browser.",
+    problem:
+      "Small businesses reconcile by hand in Excel every month: ₹2,12,400 arrives against a ₹2,36,000 invoice (10% TDS), 'BRIGHTLOOP DSGN' is Brightloop Design LLP, one transfer settles two invoices. Accounting tools want a bank integration and a subscription before they'll even try.",
+    approach: [
+      "Explainable scoring, not a black box: amount (exact, TDS rate, bank charges), invoice number in the narration, fuzzy party name and payment timing — every signal shown on the match.",
+      "Conservative automation: only confident pairs with no close rival match on their own; an amount with no name or reference is capped below the review line.",
+      "The awkward cases are first-class — one payment for several invoices, one invoice paid in parts, payments net of TDS.",
+      "It learns from review: confirmed payers become aliases, rejected pairs are never suggested again, and progress is saved on the device.",
+    ],
+    built: [
+      "Readers for bank statements (CSV, Excel, PDF incl. password-protected) and invoice lists from Zoho Books, Tally, QuickBooks, Vyapar or any spreadsheet.",
+      "A matcher with Jaro-Winkler and abbreviation-aware name similarity, TDS detection at 1/2/5/10%, subset search for grouped and split payments, and rival detection.",
+      "A review queue with keyboard shortcuts, manual matching from either side with ranked candidates, and a 'what Recon learned' panel you can undo.",
+      "Unpaid view with receivables/payables aging, reminder text and WhatsApp share, plus CSV exports of the reconciled statement and open invoices.",
+    ],
+    results: [
+      { value: "9/13", label: "sample matches made automatically; the 4 judgement calls go to review" },
+      { value: "0", label: "false auto-matches on the planted ambiguous payment" },
+      { value: "97", label: "automated tests: 31 engine and 66 browser" },
+      { value: "17", label: "screen sizes audited for overflow and overlaps" },
+    ],
+    stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "GSAP + Lenis", "pdf.js", "SheetJS", "Papa Parse", "Vitest", "Playwright", "Vercel"],
+    links: [
+      { label: "Live app", href: "https://recon-manicpsycho01.vercel.app" },
+      { label: "GitHub", href: "https://github.com/manicpsycho01/recon" },
+    ],
+    cover: { src: "/work/recon/summary.jpg", alt: "Reconciliation summary: ₹5,07,400 of ₹9,61,621 received is matched", w: 1600, h: 950, device: "browser", focus: [26, 30] },
+    gallery: [
+      { src: "/work/recon/review.jpg", alt: "Review queue: a payment net of 10% TDS, with the reasons for the match", w: 1600, h: 950, device: "browser", focus: [32, 45] },
+      { src: "/work/recon/unpaid.jpg", alt: "Unpaid invoices with aging and payment reminders", w: 1600, h: 950, device: "browser", focus: [40, 50] },
+      { src: "/work/recon/picker.jpg", alt: "Matching a payment by hand, candidates ranked by fit", w: 1600, h: 950, device: "browser", focus: [38, 55] },
+      { src: "/work/recon/landing.jpg", alt: "Recon landing: drop a bank statement and an invoice list", w: 1600, h: 950, device: "browser", focus: [28, 45] },
+      { src: "/work/recon/phone-landing.jpg", alt: "Recon on a phone: two inputs and sample data", w: 780, h: 1688, device: "phone" },
+      { src: "/work/recon/phone-summary.jpg", alt: "Reconciliation summary on a phone", w: 780, h: 1688, device: "phone" },
+      { src: "/work/recon/phone-review.jpg", alt: "A review card on a phone", w: 780, h: 1688, device: "phone" },
+    ],
+    tint: "#0E3B33",
+  },
 ];
 
 export const capabilities = [
