@@ -59,7 +59,6 @@ export function Gallery({ shots, tint, title }: { shots: Shot[]; tint: string; t
       <div className="flex items-center justify-between gap-4 px-4 md:px-8">
         <p className="label min-w-0 truncate text-paper/70" aria-live="polite">
           <span className="text-paper">{pad(current + 1)}</span> / {pad(shots.length)}
-          <span className="hidden md:inline"> · {shots[current]?.alt}</span>
         </p>
         <div className="flex shrink-0 gap-2">
           <ArrowButton label="Previous screenshot" onClick={() => go(-1)} disabled={current === 0} dir="prev" />

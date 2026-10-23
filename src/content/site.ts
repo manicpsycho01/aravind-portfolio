@@ -151,7 +151,7 @@ export const projects: Project[] = [
     title: "FridgeMate AI",
     kicker: "Personal project · AI kitchen assistant for iPhone",
     year: "2026",
-    status: "Personal project",
+    status: "Live",
     type: "Mobile app",
     role: "Solo — product, design, mobile and backend",
     summary:
@@ -173,10 +173,13 @@ export const projects: Project[] = [
     results: [
       { value: "Gemini", label: "powers fridge and receipt scanning, and recipe ideas" },
       { value: "~1s", label: "to stock the fridge or log a cooked meal (batched writes)" },
-      { value: "iOS", label: "running on iPhone via Expo, one codebase for Android" },
+      { value: "iOS + web", label: "one Expo codebase: iPhone app and a live web app" },
     ],
     stack: ["React Native", "Expo SDK 57", "TypeScript", "Expo Router", "Reanimated", "Supabase", "Edge Functions", "Google Gemini"],
-    links: [{ label: "GitHub", href: "https://github.com/manicpsycho01/fridgemate-ai" }],
+    links: [
+      { label: "Live web app", href: "https://fridgemate-ai.vercel.app" },
+      { label: "GitHub", href: "https://github.com/manicpsycho01/fridgemate-ai" },
+    ],
     cover: { src: "/work/fridgemate/home.jpg", alt: "FridgeMate AI home: 6 items, 1 to use soon", w: 780, h: 1688, device: "phone" },
     gallery: [
       { src: "/work/fridgemate/welcome.jpg", alt: "Welcome screen: Cook what you already have", w: 780, h: 1688, device: "phone" },
