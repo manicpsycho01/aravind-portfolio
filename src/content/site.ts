@@ -377,7 +377,8 @@ export const projects: Project[] = [
     cover: { src: "/work/kaudi/landing.jpg", alt: "Kaudi: a live network of Indian Ocean ports on a night sea chart", w: 1600, h: 950, device: "browser", focus: [24, 38] },
     gallery: [
       { src: "/work/kaudi/heist.jpg", alt: "The heist: forged blocks refused by Calicut, each naming the rule it broke", w: 1600, h: 950, device: "browser", focus: [28, 35] },
-      { src: "/work/kaudi/sea.jpg", alt: "The monsoon splits the network and the chain forks into two branches", w: 1600, h: 950, device: "browser", focus: [34, 45] },
+      { src: "/work/kaudi/sea-v2.jpg", alt: "The monsoon splits the network and the chain forks into two branches", w: 1600, h: 950, device: "browser", focus: [34, 45] },
+      { src: "/work/kaudi/port.jpg", alt: "Opening a port: its chain, balances and queue during the monsoon, as it sees them", w: 1600, h: 950, device: "browser", focus: [80, 35] },
       { src: "/work/kaudi/tamper.jpg", alt: "Tampering with an old payment breaks its proof of work and the next block's link", w: 1600, h: 950, device: "browser", focus: [30, 40] },
       { src: "/work/kaudi/merkle.jpg", alt: "A Merkle proof: three hashes prove one payment is in the block", w: 1600, h: 950, device: "browser", focus: [40, 40] },
       { src: "/work/kaudi/phone-landing.jpg", alt: "Kaudi on a phone: the hook and the live chart", w: 780, h: 1688, device: "phone" },
