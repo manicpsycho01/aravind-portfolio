@@ -387,6 +387,55 @@ export const projects: Project[] = [
     ],
     tint: "#0D1D2D",
   },
+  {
+    slug: "kuri",
+    no: "08",
+    title: "Kuri",
+    kicker: "Personal project · India's chit fund as Solidity smart contracts",
+    year: "2026",
+    status: "Live",
+    type: "Personal project",
+    role: "Solo — product, design and engineering",
+    summary:
+      "A kuri — a chit fund, chitty or committee — rebuilt as smart contracts: monthly instalments, a sealed-bid auction for the pot, the discount shared out as dividends, and an organiser who can't touch the money. The real compiled contracts run in an Ethereum virtual machine inside the page, so anyone can play a circle with simulated neighbours, no wallet needed.",
+    problem:
+      "Chit funds are how many Indian families save and borrow, and their weak point is the organiser who holds everyone's money. Putting one on a blockchain is a good test of whether smart contracts can replace that trust — and it forces the hard parts: sealed bids on a public ledger, defaults, rounding, and an organiser with no backdoor.",
+    approach: [
+      "Real chit mechanics from the Chit Funds Act, 1982: the commission is a share of the pot, so the minimum bid equals it; the discount cap and commission are configurable within hard limits.",
+      "Sealed bids by commit–reveal: only a hash goes on chain, bound to the chain, circle, round and bidder; a small bond is lost if you don't reveal; ties go to the lower seat so transaction ordering can't decide an auction.",
+      "An honest answer to defaults: code can hold money but can't make people pay. Each circle chooses trust mode (full prize, one instalment of security) or escrow mode (a winner's own future dues are held back).",
+      "Reviewed adversarially for exploits, then proven with invariant tests: thousands of random actions, and the contract must always hold exactly what it owes.",
+    ],
+    built: [
+      "KuriCircle, KuriFactory (EIP-1167 clones) and a test-rupee token in Solidity 0.8 with OpenZeppelin: no admin powers, pull payments, reentrancy guards, fee-on-transfer tokens rejected.",
+      "34 Hardhat tests in Solidity: every rule and revert, a fuzz test, and six invariants over 512 random runs each — solvency, no money from nowhere, one prize per round.",
+      "A playable sandbox running the compiled bytecode in EthereumJS inside the browser, with neighbours who bid by motive and an under-the-hood log of every call, its gas and events.",
+      "Explainers for learners: an interactive sealed-bid demo, a Solidity glossary, the contract annotated, design decisions and what it doesn't solve.",
+    ],
+    results: [
+      { value: "34", label: "contract tests incl. fuzz and invariants × 512 runs" },
+      { value: "0", label: "admin powers once a circle starts — no withdrawals, no rule changes" },
+      { value: "100", label: "automated tests across contracts, the in-page EVM and the browser" },
+      { value: "17", label: "screen sizes audited for overflow and overlaps" },
+    ],
+    stack: ["Solidity 0.8", "OpenZeppelin 5", "Hardhat 3", "forge-std", "EthereumJS VM", "viem", "Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Vitest", "Playwright", "Vercel"],
+    links: [
+      { label: "Live site", href: "https://kuri-six.vercel.app" },
+      { label: "Play a circle", href: "https://kuri-six.vercel.app/play" },
+      { label: "GitHub", href: "https://github.com/manicpsycho01/kuri" },
+    ],
+    cover: { src: "/work/kuri/home.jpg", alt: "Kuri: the chit fund nobody can run away with, with the circle of members under an aurora", w: 1600, h: 950, device: "browser", focus: [30, 45] },
+    gallery: [
+      { src: "/work/kuri/bid.jpg", alt: "Sealing a bid: what you'd get if you win, and what everyone else gets back", w: 1600, h: 950, device: "browser", focus: [70, 40] },
+      { src: "/work/kuri/round.jpg", alt: "A round settled on chain: the winner, the revealed bids and the dividend", w: 1600, h: 950, device: "browser", focus: [70, 40] },
+      { src: "/work/kuri/results.jpg", alt: "Circle complete: who borrowed and who saved, in rupees", w: 1600, h: 950, device: "browser", focus: [72, 50] },
+      { src: "/work/kuri/code.jpg", alt: "The contract, annotated: sealed bids with commit–reveal", w: 1600, h: 950, device: "browser", focus: [60, 45] },
+      { src: "/work/kuri/phone-home.jpg", alt: "Kuri on a phone", w: 780, h: 1688, device: "phone" },
+      { src: "/work/kuri/phone-play.jpg", alt: "Playing a circle on a phone", w: 780, h: 1688, device: "phone" },
+      { src: "/work/kuri/phone-seal.jpg", alt: "The sealed-bid demo on a phone", w: 780, h: 1688, device: "phone" },
+    ],
+    tint: "#06120F",
+  },
 ];
 
 export const capabilities = [
