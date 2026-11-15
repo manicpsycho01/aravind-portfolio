@@ -337,6 +337,55 @@ export const projects: Project[] = [
     ],
     tint: "#2A2410",
   },
+  {
+    slug: "kaudi",
+    no: "07",
+    title: "Kaudi",
+    kicker: "Personal project · A blockchain built from scratch that you can watch — and try to rob",
+    year: "2026",
+    status: "Live",
+    type: "Personal project",
+    role: "Solo — product, design and engineering",
+    summary:
+      "A coin and blockchain written from the bytes up — real SHA-256 proof of work, Schnorr signatures and a UTXO ledger — running as a live network of eight Indian Ocean ports in the browser. You send coins, split the sea, watch forks resolve, and try six classic ways to rob it: five get caught by name, one works.",
+    problem:
+      "Blockchains get explained with words like 'trustless', 'consensus' and '51% attack' that most people can repeat but not picture — me included when I started. The usual first project, launching a token, is fifteen lines on someone else's chain and teaches almost nothing about how the chain itself agrees, or how it breaks.",
+    approach: [
+      "Build the real mechanics, not an animation: byte-exact serialisation, a validator with named rules, a block tree that follows the most cumulative work, and a mempool that handles reorgs.",
+      "Make the network visible. Ports sit on a real sea chart and every message is a boat crossing a lane in simulated time, so propagation delay — the cause of forks — is something you can see.",
+      "Teach by trying to break it: seven short voyages, and a heist board where every cheat is run against the live network and refused with the exact rule it broke.",
+      "Deterministic by design: a seeded simulation in a Web Worker with mining on a fixed time grid, so any run can be shared as a link that replays it exactly.",
+    ],
+    built: [
+      "A chain core in TypeScript: 80-byte headers and compact targets like Bitcoin's, BIP340 Schnorr signatures, bech32m addresses, Merkle trees and proofs, coinbase maturity, median-time rules and a supply cap.",
+      "Eight full nodes in one background thread, each validating independently, with gossip, chain sync after partitions, orphan handling, private (withheld) mining and forged blocks.",
+      "Seven voyages — hashes, keys, UTXOs, the mining race, a monsoon partition, a 51% double spend with the whitepaper's odds, Merkle proofs — plus a free-play sea and a block inspector.",
+      "A rules page generated from the validator itself and a 'What's real' page that draws the line between real cryptography and the simulated network.",
+    ],
+    results: [
+      { value: "5/6", label: "heist tricks caught by name — the one that works is the 51% double spend" },
+      { value: "127", label: "automated tests: 33 engine and 94 browser" },
+      { value: "1:1", label: "shared runs replay byte-for-byte, however time is chunked" },
+      { value: "17", label: "screen sizes audited for overflow and overlaps" },
+    ],
+    stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Web Workers", "@noble/hashes", "@noble/curves", "Natural Earth", "Vitest", "fast-check", "Playwright", "Vercel"],
+    links: [
+      { label: "Live site", href: "https://kaudi-eta.vercel.app" },
+      { label: "Try to rob it", href: "https://kaudi-eta.vercel.app/heist" },
+      { label: "GitHub", href: "https://github.com/manicpsycho01/kaudi" },
+    ],
+    cover: { src: "/work/kaudi/landing.jpg", alt: "Kaudi: a live network of Indian Ocean ports on a night sea chart", w: 1600, h: 950, device: "browser", focus: [24, 38] },
+    gallery: [
+      { src: "/work/kaudi/heist.jpg", alt: "The heist: forged blocks refused by Calicut, each naming the rule it broke", w: 1600, h: 950, device: "browser", focus: [28, 35] },
+      { src: "/work/kaudi/sea.jpg", alt: "The monsoon splits the network and the chain forks into two branches", w: 1600, h: 950, device: "browser", focus: [34, 45] },
+      { src: "/work/kaudi/tamper.jpg", alt: "Tampering with an old payment breaks its proof of work and the next block's link", w: 1600, h: 950, device: "browser", focus: [30, 40] },
+      { src: "/work/kaudi/merkle.jpg", alt: "A Merkle proof: three hashes prove one payment is in the block", w: 1600, h: 950, device: "browser", focus: [40, 40] },
+      { src: "/work/kaudi/phone-landing.jpg", alt: "Kaudi on a phone: the hook and the live chart", w: 780, h: 1688, device: "phone" },
+      { src: "/work/kaudi/phone-heist.jpg", alt: "A heist trick caught, on a phone", w: 780, h: 1688, device: "phone" },
+      { src: "/work/kaudi/phone-keys.jpg", alt: "Making a key and deriving its address, on a phone", w: 780, h: 1688, device: "phone" },
+    ],
+    tint: "#0D1D2D",
+  },
 ];
 
 export const capabilities = [
