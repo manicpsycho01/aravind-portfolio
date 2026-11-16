@@ -361,6 +361,7 @@ export const projects: Project[] = [
       "Eight full nodes in one background thread, each validating independently, with gossip, chain sync after partitions, orphan handling, private (withheld) mining and forged blocks.",
       "Seven voyages — hashes, keys, UTXOs, the mining race, a monsoon partition, a 51% double spend with the whitepaper's odds, Merkle proofs — plus a free-play sea and a block inspector.",
       "A rules page generated from the validator itself and a 'What's real' page that draws the line between real cryptography and the simulated network.",
+      "KDI, its real counterpart: a fair-launch ERC-20 on Base Sepolia with Bitcoin's halving curve, a 21M cap and no owner — verified on chain, claimable from the site through any wallet.",
     ],
     results: [
       { value: "5/6", label: "heist tricks caught by name — the one that works is the 51% double spend" },
@@ -368,10 +369,11 @@ export const projects: Project[] = [
       { value: "1:1", label: "shared runs replay byte-for-byte, however time is chunked" },
       { value: "17", label: "screen sizes audited for overflow and overlaps" },
     ],
-    stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Web Workers", "@noble/hashes", "@noble/curves", "Natural Earth", "Vitest", "fast-check", "Playwright", "Vercel"],
+    stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Web Workers", "@noble/hashes", "@noble/curves", "Solidity", "Base Sepolia", "Natural Earth", "Vitest", "fast-check", "Playwright", "Vercel"],
     links: [
       { label: "Live site", href: "https://kaudi-eta.vercel.app" },
       { label: "Try to rob it", href: "https://kaudi-eta.vercel.app/heist" },
+      { label: "The real coin", href: "https://kaudi-eta.vercel.app/coin" },
       { label: "GitHub", href: "https://github.com/manicpsycho01/kaudi" },
     ],
     cover: { src: "/work/kaudi/landing.jpg", alt: "Kaudi: a live network of Indian Ocean ports on a night sea chart", w: 1600, h: 950, device: "browser", focus: [24, 38] },
