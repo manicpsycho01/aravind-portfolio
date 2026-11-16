@@ -436,6 +436,56 @@ export const projects: Project[] = [
     ],
     tint: "#06120F",
   },
+  {
+    slug: "complyflow",
+    no: "09",
+    title: "ComplyFlow",
+    kicker: "Personal project · A multi-tenant workspace for Oman's move to e‑invoicing",
+    year: "2026",
+    status: "Live",
+    type: "Personal project",
+    role: "Solo — product, design and engineering",
+    summary:
+      "A workspace where accounting firms and the businesses they serve get invoice data ready for e-invoicing: upload a spreadsheet export, map its columns once, run a versioned Oman rule pack, and work every problem to resolution — with the client fixing values through a correction portal instead of email. Each business decides exactly what its accountant can see and do.",
+    problem:
+      "Oman is moving to mandatory e-invoicing (Fawtara), and the hard part isn't sending invoices — it's that everyday invoice data lives in messy exports from Tally, Excel and a dozen other tools. Firms find and chase the problems client by client over email and personal spreadsheets, with no shared record of who owns what or what changed.",
+    approach: [
+      "Model the real relationship: firms and businesses are separate tenants, linked only when the business approves specific permissions — and able to change or revoke them at any moment.",
+      "Put security in the database, not the screens: row-level security on every table, write paths only through checked functions, and tests that act as each of eight roles trying to reach what they shouldn't.",
+      "Never overwrite the original: imports are kept as uploaded, checks are re-run before anything is saved, and client corrections are stored as revisions next to the imported values.",
+      "Be honest about scope: data-quality checks, not compliance claims — the regulatory rules ship switched off until a qualified professional reviews them.",
+    ],
+    built: [
+      "A CSV/XLSX import wizard with column auto-mapping, saved templates and a purpose-built XLSX reader that's linear-time and refuses zip bombs; every import payload is signed by the server so the database can't be fed data that didn't come from the file.",
+      "A versioned Oman rule pack (16 checks: totals, VAT maths, dates, duplicates, repeats of earlier imports), issues with owners, status, comments and history, and client readiness at a glance.",
+      "A correction portal, private documents behind access-checked downloads, tasks, in-app notifications, CSV and print-to-PDF reports, and an activity log in every workspace.",
+      "Plans with limits enforced in the database, a billing page, support tickets, an audited platform-admin area that can't see tenant data, and a resettable demo with fictional Omani firms.",
+    ],
+    results: [
+      { value: "176", label: "automated tests — 19 unit, 71 database, 86 browser — all passing on the live site" },
+      { value: "8", label: "roles, each tested against the database for what it can and can't reach" },
+      { value: "16", label: "data-quality checks in a versioned, source-referenced Oman rule pack" },
+      { value: "AA", label: "WCAG 2.2 checks pass on every public page and main app screen" },
+    ],
+    stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Supabase", "PostgreSQL", "Row-level security", "Zod", "fflate", "Papa Parse", "Vitest", "Playwright", "axe-core", "Vercel"],
+    links: [
+      { label: "Live site", href: "https://complyflow-nine.vercel.app" },
+      { label: "Features", href: "https://complyflow-nine.vercel.app/features" },
+    ],
+    cover: { src: "/work/complyflow/home.jpg", alt: "ComplyFlow: every client, every invoice, every issue, under control — with a client readiness card", w: 1600, h: 950, device: "browser", focus: [30, 45] },
+    gallery: [
+      { src: "/work/complyflow/checks.jpg", alt: "Reviewing an import: errors and warnings by check, with the exact row and what's wrong, before anything is saved", w: 1600, h: 950, device: "browser", focus: [60, 45] },
+      { src: "/work/complyflow/overview.jpg", alt: "A firm's overview: client readiness from needs fixes to ready, with open issues", w: 1600, h: 950, device: "browser", focus: [50, 40] },
+      { src: "/work/complyflow/issues.jpg", alt: "Issues across clients, each with severity, invoice, row, owner and status", w: 1600, h: 950, device: "browser", focus: [55, 45] },
+      { src: "/work/complyflow/mapping.jpg", alt: "Matching a spreadsheet's columns to invoice fields, with sample values", w: 1600, h: 950, device: "browser", focus: [55, 40] },
+      { src: "/work/complyflow/reports.jpg", alt: "Data-quality report by check and severity, downloadable as CSV or PDF", w: 1600, h: 950, device: "browser", focus: [55, 45] },
+      { src: "/work/complyflow/features.jpg", alt: "The features page", w: 1600, h: 950, device: "browser", focus: [40, 40] },
+      { src: "/work/complyflow/phone-home.jpg", alt: "ComplyFlow on a phone", w: 780, h: 1688, device: "phone" },
+      { src: "/work/complyflow/phone-overview.jpg", alt: "Client readiness on a phone", w: 780, h: 1688, device: "phone" },
+      { src: "/work/complyflow/phone-issues.jpg", alt: "Issues on a phone", w: 780, h: 1688, device: "phone" },
+    ],
+    tint: "#2A1A0F",
+  },
 ];
 
 export const capabilities = [
