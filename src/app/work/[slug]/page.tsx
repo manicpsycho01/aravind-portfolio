@@ -123,24 +123,7 @@ export default async function CaseStudy({ params }: Props) {
         </ul>
       </Block>
 
-      <section aria-label="Results" className="bg-ink py-20 text-paper md:py-28">
-        <div className="gutter">
-          <h2 className="label flex justify-between border-t border-paper-line pt-4 text-paper-muted">
-            <span>(04)</span>
-            <span>Results</span>
-          </h2>
-          <dl className={`mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-2 ${p.results.length > 3 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
-            {p.results.map((r) => (
-              <div key={r.label} data-reveal className="flex flex-col-reverse gap-3 border-t border-paper-line pt-4">
-                <dt className="max-w-[18rem] text-sm leading-snug text-paper-muted">{r.label}</dt>
-                <dd className="display text-[clamp(3.5rem,7vw,7.5rem)] leading-[0.85]">{r.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
-
-      <Block index="05" title="Stack">
+      <Block index="04" title="Stack">
         <ul className="flex flex-wrap gap-2">
           {p.stack.map((s) => (
             <li key={s} className="label rounded-full border border-ink/25 px-4 py-2.5">

@@ -45,7 +45,6 @@ export type Project = {
   problem: string;
   approach: string[];
   built: string[];
-  results: { value: string; label: string }[];
   stack: string[];
   links: { label: string; href: string }[];
   cover: Shot;
@@ -79,12 +78,6 @@ export const projects: Project[] = [
       "Full-stack MVP: company onboarding with instant TMC-IDs, credit-line lifecycle (amend, close, dispute, closure, default reports), CFO OTP confirmation, monthly snapshots with data-quality quarantine, ops review console and a monthly score release.",
       "Postgres row-level security so one company can never read another's data — enforced by the database, not just the app.",
       "Supply-chain project map on real scores, Arabic right-to-left layout, dark mode and a native-feeling mobile web app.",
-    ],
-    results: [
-      { value: "271", label: "automated tests passing (rules, database privacy, flows)" },
-      { value: "3", label: "supplier privacy floor before any score is shown" },
-      { value: "7", label: "demo personas for investor and customer pitches" },
-      { value: "2", label: "languages, English and Arabic (RTL)" },
     ],
     stack: ["Next.js 16", "React 19", "TypeScript", "PostgreSQL 17 · RLS", "Drizzle ORM", "Better Auth", "Zod", "Vitest", "Playwright", "Vercel"],
     links: [
@@ -127,12 +120,6 @@ export const projects: Project[] = [
       "A CLI and a browser workspace that both work without a model key — every recovery is still reachable.",
       "Scoreboards and tests that grade the engine, the agent loop and the UI separately, with honest caveats.",
     ],
-    results: [
-      { value: "36/36", label: "gradable questions answered by the engine" },
-      { value: "19/19", label: "scenario checks, incl. 19 exclusions byte-for-byte" },
-      { value: "28/28", label: "agent-loop and claim-gate tests" },
-      { value: "119/119", label: "headless-browser checks of the workspace" },
-    ],
     stack: ["Python 3.10+ (stdlib only)", "LLM agent loop", "Claim gate", "Vanilla JS workspace", "jsdom tests", "OpenAI-compatible API"],
     links: [{ label: "GitHub", href: "https://github.com/manicpsycho01/vista-crew" }],
     cover: { src: "/work/aircrew/04-ranked-cover.png", alt: "Ranked cover options for a pairing after a captain is lost", w: 1600, h: 950, device: "browser", focus: [42, 28] },
@@ -169,11 +156,6 @@ export const projects: Project[] = [
       "Fridge scan with a viewfinder, staged progress and a confirm checklist; fridge list grouped by urgency with freshness rings and quick steppers.",
       "AI recipe ideas from the items you pick, recipe detail with what you have vs. need, and an 'I cooked this' sheet that updates the fridge and history.",
       "App Store-ready basics: email sign-in with password reset, in-app account deletion, haptics, reduced-motion support and a real app icon.",
-    ],
-    results: [
-      { value: "Gemini", label: "powers fridge and receipt scanning, and recipe ideas" },
-      { value: "~1s", label: "to stock the fridge or log a cooked meal (batched writes)" },
-      { value: "iOS + web", label: "one Expo codebase: iPhone app and a live web app" },
     ],
     stack: ["React Native", "Expo SDK 57", "TypeScript", "Expo Router", "Reanimated", "Supabase", "Edge Functions", "Google Gemini"],
     links: [
@@ -215,12 +197,6 @@ export const projects: Project[] = [
       "Merchant recognition for ~120 Indian merchants plus UPI, NEFT, IMPS, ACH and POS narration parsing; unknown merchants still group by name.",
       "Six checks: subscriptions (overlaps, price rises), bank fees, double charges, food delivery, small spends and cash — each with a next step and a yearly saving.",
       "Report with vitals, charts, an evidence locker (search, filter, re-label), categorised CSV export and print-to-PDF, in light and dark mode.",
-    ],
-    results: [
-      { value: "0", label: "bytes of your statement uploaded — it's read on your device" },
-      { value: "3", label: "file formats: CSV, Excel and PDF (incl. password-protected)" },
-      { value: "118", label: "automated tests: 51 engine and 67 browser" },
-      { value: "17", label: "screen sizes audited for overflow and overlaps" },
     ],
     stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "GSAP + Lenis", "pdf.js", "SheetJS", "Papa Parse", "Vitest", "Playwright", "Vercel"],
     links: [
@@ -264,12 +240,6 @@ export const projects: Project[] = [
       "A review queue with keyboard shortcuts, manual matching from either side with ranked candidates, and a 'what Recon learned' panel you can undo.",
       "Unpaid view with receivables/payables aging, reminder text and WhatsApp share, plus CSV exports of the reconciled statement and open invoices.",
     ],
-    results: [
-      { value: "9/13", label: "sample matches made automatically; the 4 judgement calls go to review" },
-      { value: "0", label: "false auto-matches on the planted ambiguous payment" },
-      { value: "97", label: "automated tests: 31 engine and 66 browser" },
-      { value: "17", label: "screen sizes audited for overflow and overlaps" },
-    ],
     stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "GSAP + Lenis", "pdf.js", "SheetJS", "Papa Parse", "Vitest", "Playwright", "Vercel"],
     links: [
       { label: "Live app", href: "https://recon-manicpsycho01.vercel.app" },
@@ -311,12 +281,6 @@ export const projects: Project[] = [
       "Equal, exact, shares and percentage splits with live validation; edit, delete and restore with author/admin permissions; activity feed.",
       "Settle-up with UPI intent links (GPay, PhonePe, Paytm), a scannable QR on desktop, copy-UPI-ID fallback, and payment records anyone involved can undo.",
       "Personal and group invite links with QR and WhatsApp share, admin link reset and unlinking, plus an on-device demo group for visitors.",
-    ],
-    results: [
-      { value: "₹0.00", label: "rounding drift — splits checked across 2,300 randomised cases" },
-      { value: "12", label: "live access-rule tests with four guest users against the real database" },
-      { value: "65", label: "browser tests, incl. two friends syncing live and a Splitwise import" },
-      { value: "17", label: "screen sizes audited for overflow and overlaps" },
     ],
     stack: ["Expo SDK 57", "React Native Web", "TypeScript", "Supabase (Postgres, RLS, Realtime, anonymous auth)", "Reanimated", "Vitest", "Playwright", "Vercel"],
     links: [
@@ -363,12 +327,6 @@ export const projects: Project[] = [
       "A rules page generated from the validator itself and a 'What's real' page that draws the line between real cryptography and the simulated network.",
       "KDI, its real counterpart: a fair-launch ERC-20 on Base Sepolia with Bitcoin's halving curve, a 21M cap and no owner — verified on chain, claimable from the site through any wallet.",
     ],
-    results: [
-      { value: "5/6", label: "heist tricks caught by name — the one that works is the 51% double spend" },
-      { value: "127", label: "automated tests: 33 engine and 94 browser" },
-      { value: "1:1", label: "shared runs replay byte-for-byte, however time is chunked" },
-      { value: "17", label: "screen sizes audited for overflow and overlaps" },
-    ],
     stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Web Workers", "@noble/hashes", "@noble/curves", "Solidity", "Base Sepolia", "Natural Earth", "Vitest", "fast-check", "Playwright", "Vercel"],
     links: [
       { label: "Live site", href: "https://kaudi-eta.vercel.app" },
@@ -414,12 +372,6 @@ export const projects: Project[] = [
       "A playable sandbox running the compiled bytecode in EthereumJS inside the browser, with neighbours who bid by motive and an under-the-hood log of every call, its gas and events.",
       "Explainers for learners: an interactive sealed-bid demo, a Solidity glossary, the contract annotated, design decisions and what it doesn't solve.",
     ],
-    results: [
-      { value: "34", label: "contract tests incl. fuzz and invariants × 512 runs" },
-      { value: "0", label: "admin powers once a circle starts — no withdrawals, no rule changes" },
-      { value: "100", label: "automated tests across contracts, the in-page EVM and the browser" },
-      { value: "17", label: "screen sizes audited for overflow and overlaps" },
-    ],
     stack: ["Solidity 0.8", "OpenZeppelin 5", "Hardhat 3", "forge-std", "EthereumJS VM", "viem", "Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Vitest", "Playwright", "Vercel"],
     links: [
       { label: "Live site", href: "https://kuri-six.vercel.app" },
@@ -462,12 +414,6 @@ export const projects: Project[] = [
       "A versioned Oman rule pack (16 checks: totals, VAT maths, dates, duplicates, repeats of earlier imports), issues with owners, status, comments and history, and client readiness at a glance.",
       "A correction portal, private documents behind access-checked downloads, tasks, in-app notifications, CSV and print-to-PDF reports, and an activity log in every workspace.",
       "Plans with limits enforced in the database, a billing page, support tickets, an audited platform-admin area that can't see tenant data, and a resettable demo with fictional Omani firms.",
-    ],
-    results: [
-      { value: "176", label: "automated tests — 19 unit, 71 database, 86 browser — all passing on the live site" },
-      { value: "8", label: "roles, each tested against the database for what it can and can't reach" },
-      { value: "16", label: "data-quality checks in a versioned, source-referenced Oman rule pack" },
-      { value: "AA", label: "WCAG 2.2 checks pass on every public page and main app screen" },
     ],
     stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Supabase", "PostgreSQL", "Row-level security", "Zod", "fflate", "Papa Parse", "Vitest", "Playwright", "axe-core", "Vercel"],
     links: [

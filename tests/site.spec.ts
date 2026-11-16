@@ -70,7 +70,7 @@ test("case studies: every project page shows its facts and links to the next fli
   for (const [i, p] of projects.entries()) {
     await page.goto(`/work/${p.slug}`, { waitUntil: "networkidle" });
     await expect(page.getByRole("heading", { level: 1 })).toContainText(new RegExp(p.title, "i"));
-    for (const r of p.results) await expect(page.getByText(r.label).first()).toBeAttached();
+    await expect(page.getByRole("region", { name: "Results" })).toHaveCount(0); // no numbers section
     const next = projects[(i + 1) % projects.length]!;
     await expect(page.locator(`a[href="/work/${next.slug}"]`).first()).toBeAttached();
   }
